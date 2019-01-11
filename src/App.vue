@@ -1,27 +1,23 @@
 <template>
-  <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js + TypeScript App"/>
-  </div>
+  <v-app>
+    <v-content>
+      <S2SCard title="test Title"></S2SCard>
+    </v-content>
+  </v-app>
 </template>
 
-<script lang="ts">
-import { Component, Vue } from "vue-property-decorator";
-import HelloWorld from "./components/HelloWorld.vue";
+<script>
+import S2SCard from "./components/S2SCard.vue";
 
-@Component({
+export default {
+  name: "App",
   components: {
-    HelloWorld
+    S2SCard
+  },
+  data() {
+    return {
+      //
+    };
   }
-})
-export default class App extends Vue {}
+};
 </script>
-<style lang="stylus">
-#app
-  font-family 'Avenir', Helvetica, Arial, sans-serif
-  -webkit-font-smoothing antialiased
-  -moz-osx-font-smoothing grayscale
-  text-align center
-  color #2c3e50
-  margin-top 60px
-</style>
