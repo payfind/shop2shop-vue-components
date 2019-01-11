@@ -1,16 +1,12 @@
 <template>
-  <v-card>
-    <v-toolbar light dense v-if="title">
+  <v-flex>
+    <v-toolbar light>
       <v-toolbar-title>{{title}}</v-toolbar-title>
     </v-toolbar>
-    <v-sheet tile>
-      <v-card-text>
-        <div class="text-xs-center">
-          <slot></slot>
-        </div>
-      </v-card-text>
-    </v-sheet>
-  </v-card>
+    <v-container fluid elevation-0>
+      <slot></slot>
+    </v-container>
+  </v-flex>
 </template>
 
 <script lang="ts">
