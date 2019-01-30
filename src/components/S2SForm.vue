@@ -13,7 +13,7 @@
 import { Vue, Watch, Component, Prop } from "vue-property-decorator";
 
 @Component
-export default class S2SCard extends Vue {
+export default class S2SForm extends Vue {
 	@Prop() title!: string;
 }
 </script>
