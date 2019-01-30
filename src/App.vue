@@ -1,9 +1,11 @@
 <template>
 	<v-app>
 		<v-content>
+			<S2SCurrencyInput v-model="result"></S2SCurrencyInput>
 			<S2SForm title="test Title">
 				<S2SCard>
-					<S2SFormGenerator></S2SFormGenerator>
+					result: {{result}}
+					<!-- <S2SFormGenerator ></S2SFormGenerator> -->
 				</S2SCard>
 			</S2SForm>
 		</v-content>
@@ -21,12 +23,12 @@ export default {
 	components: {
 		S2SCard,
 		S2SForm,
-		// S2SCurrencyInput,
-		S2SFormGenerator
+		S2SCurrencyInput
+		// S2SFormGenerator
 	},
 	data() {
 		return {
-			//
+			result: 0
 		};
 	}
 };
