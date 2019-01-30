@@ -5,7 +5,7 @@
 		:label="label"
 		@blur="isInputActive = false"
 		@focus="isInputActive = true"
-		@input="updateValue()"
+		@input="updateValue($event)"
 	></v-text-field>
 </template>
 
@@ -26,8 +26,8 @@ export default class S2SCurrencyInput extends Vue {
 	private isInputActive = false;
 	private _displayValue = "";
 
-	updateValue() {
-		this.$emit("input", this.value);
+	updateValue(val: number) {
+		this.$emit("input", val);
 	}
 
 	get displayValue() {
@@ -49,7 +49,7 @@ export default class S2SCurrencyInput extends Vue {
 		}
 		// Note: we cannot set this.value as it is a "prop". It needs to be passed to parent component
 		// $emit the event so that parent component gets it
-		this.value = newValue;
+		this.$emit("udpate:value", newValue);
 	}
 }
 </script>
