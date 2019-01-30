@@ -5,6 +5,7 @@
 		:label="label"
 		@blur="isInputActive = false"
 		@focus="isInputActive = true"
+		@input="updateValue()"
 	></v-text-field>
 </template>
 
@@ -17,15 +18,19 @@ export default class S2SCurrencyInput extends Vue {
 	symbol!: string;
 	@Prop({ default: " " })
 	thousandsSeperator!: string;
-	@Prop({ default: "No Label Provided" })
+	@Prop({ default: "" })
 	label!: string;
+	@Prop({ default: 0 })
+	value!: number;
 
-	private value = 0;
 	private isInputActive = false;
 	private _displayValue = "";
 
+	updateValue() {
+		this.$emit("input", this.value);
+	}
+
 	get displayValue() {
-		debugger;
 		if (this.isInputActive) {
 			// Cursor is inside the input field. unformat display value for user
 			return this.value.toString();
