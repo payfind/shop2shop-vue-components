@@ -1,6 +1,6 @@
 {
 	"name": "shop2shop-vue-components",
-	"version": "0.2.5",
+	"version": "0.2.6",
 	"main": "./dist/shop2shop.common.js",
 	"scripts": {
 		"serve": "vue-cli-service serve",
