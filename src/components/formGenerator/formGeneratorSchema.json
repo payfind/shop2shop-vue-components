@@ -1,0 +1,108 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "definitions": {
+        "VCheckbox": {
+            "properties": {
+                "component": {
+                    "enum": [
+                        "v-checkbox"
+                    ],
+                    "type": "string"
+                },
+                "hidden": {
+                    "type": "boolean"
+                },
+                "label": {
+                    "type": "string"
+                }
+            },
+            "required": [
+                "component",
+                "hidden",
+                "label"
+            ],
+            "type": "object"
+        },
+        "VSelect": {
+            "properties": {
+                "component": {
+                    "enum": [
+                        "v-select"
+                    ],
+                    "type": "string"
+                },
+                "hidden": {
+                    "type": "boolean"
+                },
+                "items": {
+                    "anyOf": [
+                        {
+                            "items": {
+                                "type": "string"
+                            },
+                            "type": "array"
+                        },
+                        {
+                            "type": "string"
+                        }
+                    ]
+                },
+                "label": {
+                    "type": "string"
+                }
+            },
+            "required": [
+                "component",
+                "hidden",
+                "items",
+                "label"
+            ],
+            "type": "object"
+        },
+        "VTextField": {
+            "properties": {
+                "component": {
+                    "enum": [
+                        "v-text-field"
+                    ],
+                    "type": "string"
+                },
+                "hidden": {
+                    "type": "boolean"
+                },
+                "label": {
+                    "type": "string"
+                }
+            },
+            "required": [
+                "component",
+                "hidden",
+                "label"
+            ],
+            "type": "object"
+        }
+    },
+    "properties": {
+        "fields": {
+            "items": {
+                "anyOf": [
+                    {
+                        "$ref": "#/definitions/VTextField"
+                    },
+                    {
+                        "$ref": "#/definitions/VSelect"
+                    },
+                    {
+                        "$ref": "#/definitions/VCheckbox"
+                    }
+                ]
+            },
+            "type": "array"
+        }
+    },
+    "required": [
+        "fields"
+    ],
+    "type": "object"
+}
+

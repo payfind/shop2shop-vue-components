@@ -1,0 +1,130 @@
+{
+	"name": "product-add",
+	"applyToAllFields": {
+		"htmlClass": "xs12 sm6"
+	},
+	"fields": [
+		{
+			"label": "Product Name",
+			"name": "name",
+			"component": "v-text-field",
+			"required": true
+		},
+		{
+			"label": "Pack Size",
+			"name": "shortDescription",
+			"component": "v-text-field",
+			"required": true
+		},
+		{
+			"label": "Price",
+			"name": "price",
+			"component": "v-text-field",
+			"required": true,
+			"defaultVal": []
+		},
+		{
+			"label": "SKU",
+			"name": "sku",
+			"component": "v-text-field",
+			"required": true,
+			"defaultVal": []
+		},
+		{
+			"label": "Brand Name",
+			"name": "brandName",
+			"component": "v-text-field",
+			"required": true,
+			"defaultVal": []
+		},
+		{
+			"label": "Categories",
+			"name": "tags",
+			"component": "v-select",
+			"props": {
+				"multiple": "multiple"
+			},
+			"items": "categories",
+			"required": false,
+			"defaultVal": []
+		},
+		{
+			"label": "Options",
+			"name": "optionSets",
+			"component": "v-select",
+			"props": {
+				"multiple": "multiple"
+			},
+			"items": "options",
+			"required": false,
+			"defaultVal": []
+		},
+		{
+			"label": "Extras",
+			"name": "extraSets",
+			"component": "v-select",
+			"props": {
+				"multiple": "multiple"
+			},
+			"items": "extras",
+			"required": false,
+			"defaultVal": []
+		},
+		{
+			"label": "Instock",
+			"name": "available",
+			"component": "v-checkbox",
+			"required": false,
+			"defaultVal": []
+		},
+		{
+			"label": "Position",
+			"name": "position",
+			"component": "v-text-field",
+			"defaultVal": 1
+		},
+		{
+			"label": "Available Online",
+			"name": "availableOnline",
+			"component": "v-checkbox",
+			"required": false,
+			"hidden": true,
+			"defaultVal": true
+		},
+		{
+			"label": "Visible in catalogue",
+			"name": "enabled",
+			"component": "v-checkbox",
+			"required": false,
+			"defaultVal": []
+		},
+		{
+			"label": "Description",
+			"name": "description",
+			"component": "v-text-field",
+			"hidden": true,
+			"defaultVal": []
+		},
+		{
+			"label": "Additional Info",
+			"name": "additionalInfo",
+			"component": "v-text-field",
+			"hidden": true,
+			"defaultVal": ""
+		},
+		{
+			"label": "productType",
+			"name": "productType",
+			"component": "v-text-field",
+			"hidden": true,
+			"defaultVal": {}
+		},
+		{
+			"label": "productType",
+			"name": "attributes",
+			"component": "v-text-field",
+			"hidden": true,
+			"defaultVal": []
+		}
+	]
+}
