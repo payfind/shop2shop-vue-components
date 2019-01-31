@@ -45,6 +45,7 @@ export default class S2SCurrencyInput extends Vue {
 		// Note: we cannot set this.value as it is a "prop". It needs to be passed to parent component
 		// $emit the event so that parent component gets it
 		this.$emit("input", newValue);
+		this.$emit("change", newValue);
 	}
 }
 </script>
