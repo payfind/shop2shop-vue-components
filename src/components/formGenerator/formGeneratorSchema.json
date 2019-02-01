@@ -1,6 +1,67 @@
 {
     "$schema": "http://json-schema.org/draft-07/schema#",
     "definitions": {
+        "Layout": {
+            "properties": {
+                "properties": {
+                    "properties": {
+                        "d-block": {
+                            "type": "boolean"
+                        }
+                    },
+                    "required": [
+                        "d-block"
+                    ],
+                    "type": "object"
+                }
+            },
+            "required": [
+                "properties"
+            ],
+            "type": "object"
+        },
+        "VAutocomplete": {
+            "properties": {
+                "component": {
+                    "enum": [
+                        "v-autocomplete"
+                    ],
+                    "type": "string"
+                },
+                "hidden": {
+                    "type": "boolean"
+                },
+                "items": {
+                    "anyOf": [
+                        {
+                            "items": {
+                                "type": "string"
+                            },
+                            "type": "array"
+                        },
+                        {
+                            "type": "string"
+                        }
+                    ]
+                },
+                "label": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "required": {
+                    "type": "boolean"
+                }
+            },
+            "required": [
+                "component",
+                "items",
+                "label",
+                "name"
+            ],
+            "type": "object"
+        },
         "VCheckbox": {
             "properties": {
                 "component": {
@@ -14,12 +75,18 @@
                 },
                 "label": {
                     "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "required": {
+                    "type": "boolean"
                 }
             },
             "required": [
                 "component",
-                "hidden",
-                "label"
+                "label",
+                "name"
             ],
             "type": "object"
         },
@@ -49,13 +116,19 @@
                 },
                 "label": {
                     "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "required": {
+                    "type": "boolean"
                 }
             },
             "required": [
                 "component",
-                "hidden",
                 "items",
-                "label"
+                "label",
+                "name"
             ],
             "type": "object"
         },
@@ -72,12 +145,18 @@
                 },
                 "label": {
                     "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "required": {
+                    "type": "boolean"
                 }
             },
             "required": [
                 "component",
-                "hidden",
-                "label"
+                "label",
+                "name"
             ],
             "type": "object"
         }
@@ -94,14 +173,21 @@
                     },
                     {
                         "$ref": "#/definitions/VCheckbox"
+                    },
+                    {
+                        "$ref": "#/definitions/VAutocomplete"
                     }
                 ]
             },
             "type": "array"
+        },
+        "layout": {
+            "$ref": "#/definitions/Layout"
         }
     },
     "required": [
-        "fields"
+        "fields",
+        "layout"
     ],
     "type": "object"
 }

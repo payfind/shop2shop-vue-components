@@ -1,5 +1,5 @@
 <template>
-	<v-layout row wrap>
+	<v-layout row wrap v-bind="layout.properties" v-if="valid">
 		<v-flex xs12 md6 v-for="(field, index) in fields" :key="index" v-show="!field.hidden">
 			<v-text-field v-if="field.component === 'v-text-field'" :label="field.label"></v-text-field>
 			<v-select
@@ -8,6 +8,11 @@
 				:items="(typeof field.items === 'string') ? getLookups(index, field.items) : []"
 			></v-select>
 			<v-checkbox v-else-if="field.component === 'v-checkbox'" :label="field.label"></v-checkbox>
+			<v-autocomplete
+				v-else-if="field.component === 'v-autocomplete'"
+				:label="field.label"
+				:items="(typeof field.items === 'string') ? getLookups(index, field.items) : []"
+			></v-autocomplete>
 		</v-flex>
 	</v-layout>
 </template>
@@ -16,7 +21,9 @@
 import { Vue, Watch, Component, Prop } from "vue-property-decorator";
 import formGeneratorSchema from "@/components/formGenerator/formGeneratorSchema.json";
 import productCreateForm from "@/components/formGenerator/product-create-form.json";
-import { ComponentBase, Form } from "@/components/formGenerator/formGeneratedTypes.ts";
+import safeCreateForm from "@/components/formGenerator/safe-create-form.json";
+
+import { ComponentBase, Form, Layout } from "@/components/formGenerator/formGeneratedTypes.ts";
 import Ajv from "ajv";
 
 @Component
@@ -24,20 +31,24 @@ export default class S2SFormGenerator extends Vue {
 	@Prop() title!: string;
 
 	private fields: ComponentBase[] = [];
+	private layout!: Layout;
+	private valid = false;
 
 	private lookups: any = {};
 
 	private formGeneratorSchema = formGeneratorSchema;
-	private productCreateForm: Form = productCreateForm;
+	private productCreateForm: Form = safeCreateForm;
+	private safeCreateForm: Form = safeCreateForm;
 
 	mounted() {
 		const ajv = new Ajv();
 		const validate = ajv.compile(this.formGeneratorSchema);
-		var valid = validate(this.productCreateForm);
+		this.valid = validate(this.productCreateForm) as boolean;
 
-		if (!valid) console.log(validate.errors);
+		if (!this.valid) console.log(validate.errors);
 
 		this.fields = this.productCreateForm.fields;
+		this.layout = this.productCreateForm.layout;
 	}
 
 	getLookups(index: number, api: string | string[]) {
