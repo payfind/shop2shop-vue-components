@@ -72,7 +72,8 @@ export default class S2SFormGenerator extends Vue {
 
 		this.valid = validate(this.schema) as boolean;
 
-		if (!this.valid) console.log(validate.errors);
+		// if (!this.valid) console.log(validate.errors);
+		// We need some proper error notification here
 
 		this.schemaForm = this.schema;
 		this.formFields = Object.freeze(this.schemaForm.fields);
@@ -122,7 +123,6 @@ export default class S2SFormGenerator extends Vue {
 
 	private getLookups(index: number, api: string | string[]) {
 		let response!: any;
-		debugger;
 		if (typeof api === "string" && this.apiLookup) {
 			this.apiLookup(api).then(response => {
 				const data = response.data.results ? response.data.results : response.data;
