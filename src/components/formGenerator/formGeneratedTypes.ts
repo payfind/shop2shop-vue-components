@@ -1,10 +1,15 @@
 type ComponentName = "v-text-field" | "v-select" | "v-checkbox" | "v-autocomplete";
-type ComponentType = VTextField | VSelect | VCheckbox | VAutocomplete;
+export type ComponentType = VTextField | VSelect | VCheckbox | VAutocomplete;
 
 export interface Layout {
 	properties: {
 		"d-block": boolean;
 	};
+}
+
+export interface ComponentProperties {
+	"item-value"?: string;
+	"item-text"?: string;
 }
 
 export interface ComponentBase {
@@ -13,7 +18,8 @@ export interface ComponentBase {
 	name: string;
 	component: ComponentName;
 	hidden?: boolean;
-	required?: boolean;
+	properties?: ComponentProperties;
+	validation?: string;
 }
 
 interface VTextField extends ComponentBase {

@@ -1,7 +1,7 @@
 <template>
 	<v-flex>
 		<v-toolbar light>
-			<v-toolbar-title>{{title}}</v-toolbar-title>
+			<v-toolbar-title>{{ title }}</v-toolbar-title>
 		</v-toolbar>
 		<v-container fluid elevation-0 grid-list-md text-xs-center>
 			<slot></slot>
@@ -19,5 +19,4 @@ export default class S2SForm extends Vue {
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped>
-</style>
+<style scoped></style>

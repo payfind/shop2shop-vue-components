@@ -1,0 +1,65 @@
+{
+	"name": "safe-create",
+	"applyToAllFields": {
+		"htmlClass": "xs12 sm6"
+	},
+	"layout": {
+		"properties": {
+			"d-block": true
+		}
+	},
+	"fields": [
+		{
+			"label": "Flag",
+			"name": "flag",
+			"component": "v-checkbox"
+		},
+		{
+			"label": "Description",
+			"name": "description",
+			"component": "v-text-field",
+			"validation": "required"
+		},
+		{
+			"label": "Select Organisation",
+			"name": "organisationid",
+			"component": "v-autocomplete",
+			"items": "organisations",
+			"properties": { "item-value": "id", "item-text": "name" },
+			"validation": "required"
+		},
+		{
+			"label": "Name",
+			"name": "name",
+			"component": "v-text-field",
+			"validation": "required"
+		},
+		{
+			"label": "Gender",
+			"name": "gender",
+			"component": "v-select",
+			"items": ["male", "female"],
+			"validation": "required"
+		},
+		{
+			"label": "Lenght",
+			"name": "lenght",
+			"component": "v-select",
+			"items": ["short", "medium", "tall"],
+			"validation": "required"
+		},
+		{
+			"label": "Transport",
+			"name": "transport",
+			"component": "v-select",
+			"items": ["Train", "Bicycle", "Walking", "Car"],
+			"validation": "required"
+		},
+		{
+			"label": "Message",
+			"name": "message",
+			"component": "v-text-field",
+			"validation": "required"
+		}
+	]
+}

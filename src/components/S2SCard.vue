@@ -1,7 +1,7 @@
 <template>
 	<v-card>
 		<v-toolbar light dense v-if="title">
-			<v-toolbar-title>{{title}}</v-toolbar-title>
+			<v-toolbar-title>{{ title }}</v-toolbar-title>
 		</v-toolbar>
 		<v-sheet tile>
 			<v-card-text>
@@ -22,5 +22,4 @@ export default class S2SCard extends Vue {
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped>
-</style>
+<style scoped></style>

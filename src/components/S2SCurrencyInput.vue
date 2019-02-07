@@ -1,11 +1,5 @@
 <template>
-	<v-text-field
-		name="amount"
-		v-model="displayValue"
-		:label="label"
-		@blur="isInputActive = false"
-		@focus="isInputActive = true"
-	></v-text-field>
+	<v-text-field name="amount" v-model="displayValue" :label="label" @blur="isInputActive = false" @focus="isInputActive = true"></v-text-field>
 </template>
 
 <script lang="ts">
@@ -51,5 +45,4 @@ export default class S2SCurrencyInput extends Vue {
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped>
-</style>
+<style scoped></style>
