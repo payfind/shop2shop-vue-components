@@ -12,7 +12,7 @@ const Components = {
 };
 
 Object.keys(Components).forEach(name => {
-	Vue.component(name, (<any>Components)[name]);
+	Vue.component(name, (Components as any)[name]);
 });
 
 export default Components;
