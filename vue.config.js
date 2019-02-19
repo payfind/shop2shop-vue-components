@@ -22,7 +22,7 @@ module.exports = {
 						commonjs: "vue-property-decorator",
 						commonjs2: "vue-property-decorator"
 					},
-					"vuetify/lib": {
+					vuetify: {
 						commonjs: "vuetify",
 						commonjs2: "vuetify",
 						root: "Vuetify"
