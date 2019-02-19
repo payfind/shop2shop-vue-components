@@ -43,6 +43,9 @@ import formGeneratorSchema from "@/components/formGenerator/formGeneratorSchema.
 import { ComponentBase, ComponentType, Form, Layout } from "@/components/formGenerator/formGeneratedTypes.ts";
 import Ajv from "ajv";
 
+import VeeValidate from "vee-validate";
+Vue.use(VeeValidate);
+
 @Component({
 	$_veeValidate: {
 		validator: "new"

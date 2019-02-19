@@ -10,6 +10,10 @@ module.exports = {
 						commonjs: "ajv",
 						commonjs2: "ajv"
 					},
+					"vee-validate": {
+						commonjs: "vee-validate",
+						commonjs2: "vee-validate"
+					},
 					"vue-class-component": {
 						commonjs: "vue-class-component",
 						commonjs2: "vue-class-component"
@@ -18,7 +22,7 @@ module.exports = {
 						commonjs: "vue-property-decorator",
 						commonjs2: "vue-property-decorator"
 					},
-					vuetify: {
+					"vuetify/lib": {
 						commonjs: "vuetify",
 						commonjs2: "vuetify",
 						root: "Vuetify"

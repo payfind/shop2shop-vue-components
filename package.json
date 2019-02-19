@@ -1,7 +1,8 @@
 {
 	"name": "shop2shop-vue-components",
-	"version": "0.3.13",
+	"version": "0.3.14-0",
 	"main": "./dist/shop2shop.common.js",
+	"typings": "dist/index",
 	"scripts": {
 		"serve": "vue-cli-service serve",
 		"gen-schema": "typescript-json-schema src/components/formGenerator/formGeneratedTypes.ts --required --out ./src/components/formGenerator/formGeneratorSchema.json Form",
@@ -12,10 +13,10 @@
 	"dependencies": {
 		"ajv": "^6.8.1",
 		"vee-validate": "^2.1.7",
-		"vue": "^2.6.3",
-		"vue-class-component": "^6.3.2",
+		"vue": "^2.6.6",
+		"vue-class-component": "^7.0.1",
 		"vue-property-decorator": "^7.3.0",
-		"vuetify": "^1.5.0"
+		"vuetify": "^1.5.1"
 	},
 	"devDependencies": {
 		"@vue/cli-plugin-babel": "^3.4.0",
@@ -25,15 +26,15 @@
 		"@vue/eslint-config-prettier": "^4.0.1",
 		"@vue/eslint-config-typescript": "^4.0.0",
 		"babel-eslint": "^10.0.1",
-		"eslint": "^5.13.0",
-		"eslint-plugin-vue": "^5.1.0",
+		"eslint": "^5.14.1",
+		"eslint-plugin-vue": "^5.2.2",
 		"stylus": "^0.54.5",
 		"stylus-loader": "^3.0.2",
 		"typescript": "~3.2.4",
 		"typescript-eslint-parser": "^22.0.0",
 		"vue-cli-plugin-vuetify": "^0.4.6",
-		"vue-template-compiler": "^2.6.3",
-		"vuetify-loader": "^1.2.0"
+		"vue-template-compiler": "^2.6.6",
+		"vuetify-loader": "^1.2.1"
 	},
 	"files": [
 		"dist/*",
