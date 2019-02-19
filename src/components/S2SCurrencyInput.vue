@@ -11,6 +11,10 @@ export default class S2SCurrencyInput extends Vue {
 	symbol!: string;
 	@Prop({ default: " " })
 	thousandsSeperator!: string;
+	@Prop({ default: 2 })
+	decimalCount!: number;
+	@Prop({ default: true })
+	decimalFixed!: boolean;
 	@Prop({ default: "" })
 	label!: string;
 	@Prop({ default: 0 })
@@ -23,9 +27,11 @@ export default class S2SCurrencyInput extends Vue {
 		if (this.isInputActive) {
 			// Cursor is inside the input field. unformat display value for user
 			return this.value.toString();
-		} else {
+		} else if (this.decimalFixed) {
 			// User is not modifying now. Format display value for user interface
-			return `${this.symbol} ` + (+this.value).toFixed(2).replace(/(\d)(?=(\d{3})+(?:\.\d+)?$)/g, `$1${this.thousandsSeperator}`);
+			return `${this.symbol} ` + (+this.value).toFixed(this.decimalCount).replace(/(\d)(?=(\d{3})+(?:\.\d+)?$)/g, `$1${this.thousandsSeperator}`);
+		} else {
+			return `${this.symbol} ` + String(this.value).replace(/(\d)(?=(\d{3})+(?:\.\d+)?$)/g, `$1${this.thousandsSeperator}`);
 		}
 	}
 
