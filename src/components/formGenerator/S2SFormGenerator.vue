@@ -1,6 +1,6 @@
 <template>
 	<v-layout row wrap v-bind="layout.properties" v-if="valid">
-		<v-flex xs12 md6 v-for="(field, index) in formFields" :key="index" v-show="!field.hidden">
+		<v-flex xs12 md6 v-for="(field, index) in formFields" :key="index" v-show="!field.hidden" v-bind="field.containerProperties">
 			<v-text-field
 				v-if="field.component === 'v-text-field'"
 				:label="field.label"
@@ -32,6 +32,7 @@
 				:data-vv-name="field.name"
 				:error-messages="errors.collect(field.name)"
 			></v-autocomplete>
+			<label v-else-if="field.component === 'v-label'">{{ field.label }}</label>
 		</v-flex>
 	</v-layout>
 </template>
@@ -75,7 +76,7 @@ export default class S2SFormGenerator extends Vue {
 
 		this.valid = validate(this.schema) as boolean;
 
-		// if (!this.valid) console.log(validate.errors);
+		if (!this.valid) console.log(validate.errors);
 		// We need some proper error notification here
 
 		this.schemaForm = this.schema;

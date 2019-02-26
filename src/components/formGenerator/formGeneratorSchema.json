@@ -20,9 +20,6 @@
                             "type": "boolean"
                         }
                     },
-                    "required": [
-                        "d-block"
-                    ],
                     "type": "object"
                 }
             },
@@ -38,6 +35,8 @@
                         "v-autocomplete"
                     ],
                     "type": "string"
+                },
+                "containerProperties": {
                 },
                 "hidden": {
                     "type": "boolean"
@@ -84,6 +83,41 @@
                     ],
                     "type": "string"
                 },
+                "containerProperties": {
+                },
+                "hidden": {
+                    "type": "boolean"
+                },
+                "label": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "properties": {
+                    "$ref": "#/definitions/ComponentProperties"
+                },
+                "validation": {
+                    "type": "string"
+                }
+            },
+            "required": [
+                "component",
+                "label",
+                "name"
+            ],
+            "type": "object"
+        },
+        "VLabel": {
+            "properties": {
+                "component": {
+                    "enum": [
+                        "v-label"
+                    ],
+                    "type": "string"
+                },
+                "containerProperties": {
+                },
                 "hidden": {
                     "type": "boolean"
                 },
@@ -114,6 +148,8 @@
                         "v-select"
                     ],
                     "type": "string"
+                },
+                "containerProperties": {
                 },
                 "hidden": {
                     "type": "boolean"
@@ -160,6 +196,8 @@
                     ],
                     "type": "string"
                 },
+                "containerProperties": {
+                },
                 "hidden": {
                     "type": "boolean"
                 },
@@ -199,6 +237,9 @@
                     },
                     {
                         "$ref": "#/definitions/VAutocomplete"
+                    },
+                    {
+                        "$ref": "#/definitions/VLabel"
                     }
                 ]
             },
