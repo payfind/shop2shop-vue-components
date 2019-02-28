@@ -1,11 +1,11 @@
 <template>
 	<v-card>
-		<v-toolbar light v-if="title">
+		<v-toolbar ref="toolbar" light v-if="title" :class="computeElevation">
 			<v-toolbar-title>{{ title }}</v-toolbar-title>
 			<v-spacer></v-spacer>
 			<slot name="toolbar-content"></slot>
 		</v-toolbar>
-		<v-sheet tile>
+		<v-sheet tile :class="computeElevation">
 			<v-card-text v-if="hasSlot('default')">
 				<slot></slot>
 			</v-card-text>
@@ -21,10 +21,17 @@ import { Vue, Watch, Component, Prop } from "vue-property-decorator";
 @Component
 export default class S2SCard extends Vue {
 	@Prop() title!: string;
+	@Prop({ default: 6 }) elevation!: number | string;
 
 	hasSlot(name: string) {
 		return !!this.$slots[name] || !!this.$scopedSlots[name];
 	}
+
+	get computeElevation() {
+		return `elevation-${this.elevation}`;
+	}
+
+	mounted() {}
 }
 </script>
 
