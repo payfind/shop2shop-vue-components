@@ -98,7 +98,6 @@ export default class S2SFormGenerator extends Vue {
 
 		this.valid = validate(this.schema) as boolean;
 
-debugger
 		if (!this.valid && validate.errors) throw Error(JSON.stringify(validate.errors));
 		// We need some proper error notification here
 
