@@ -32,6 +32,26 @@
 				:data-vv-name="field.name"
 				:error-messages="errors.collect(field.name)"
 			></v-autocomplete>
+			<v-menu
+				v-else-if="field.component === 'v-date-picker'"
+				ref="menu"
+				v-model="menu[field.name]"
+				:close-on-content-click="false"
+				:nudge-right="40"
+				:return-value.sync="date[field.name]"
+				lazy
+				transition="scale-transition"
+				offset-y
+				full-width
+				min-width="290px"
+			>
+				<v-text-field slot="activator" v-model="date[field.name]" label="Picker in menu" prepend-icon="event" readonly></v-text-field>
+				<v-date-picker v-model="date[field.name]" no-title scrollable>
+					<v-spacer></v-spacer>
+					<v-btn text color="primary" @click="menu[field.name] = false">Cancel</v-btn>
+					<v-btn text color="primary" @click="$refs.menu.save(date)">OK</v-btn>
+				</v-date-picker>
+			</v-menu>
 			<label v-else-if="field.component === 'v-label'">{{ field.label }}</label>
 		</v-flex>
 	</v-layout>
@@ -63,6 +83,8 @@ export default class S2SFormGenerator extends Vue {
 	private valid = false;
 
 	private model: any = {};
+	private menu: any = {};
+	private date: any = {};
 	public search = {}; // For the components with the search attribute
 
 	private lookups: any = [];
@@ -76,6 +98,7 @@ export default class S2SFormGenerator extends Vue {
 
 		this.valid = validate(this.schema) as boolean;
 
+debugger
 		if (!this.valid && validate.errors) throw Error(JSON.stringify(validate.errors));
 		// We need some proper error notification here
 

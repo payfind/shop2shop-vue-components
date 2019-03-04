@@ -108,6 +108,39 @@
             ],
             "type": "object"
         },
+        "VDataPicker": {
+            "properties": {
+                "component": {
+                    "enum": [
+                        "v-date-picker"
+                    ],
+                    "type": "string"
+                },
+                "containerProperties": {
+                },
+                "hidden": {
+                    "type": "boolean"
+                },
+                "label": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "properties": {
+                    "$ref": "#/definitions/ComponentProperties"
+                },
+                "validation": {
+                    "type": "string"
+                }
+            },
+            "required": [
+                "component",
+                "label",
+                "name"
+            ],
+            "type": "object"
+        },
         "VLabel": {
             "properties": {
                 "component": {
@@ -240,6 +273,9 @@
                     },
                     {
                         "$ref": "#/definitions/VLabel"
+                    },
+                    {
+                        "$ref": "#/definitions/VDataPicker"
                     }
                 ]
             },
