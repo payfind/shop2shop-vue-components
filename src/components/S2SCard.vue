@@ -1,8 +1,8 @@
 <template>
 	<v-card>
-		<v-toolbar ref="toolbar" light v-if="title" :class="computeElevation">
+		<v-toolbar ref="toolbar" light v-if="title || hasSlot('toolbar-content')" :class="computeElevation">
 			<v-toolbar-title>{{ title }}</v-toolbar-title>
-			<v-spacer></v-spacer>
+			<v-spacer v-if="title"></v-spacer>
 			<slot name="toolbar-content"></slot>
 		</v-toolbar>
 		<v-sheet tile :class="computeElevation">
