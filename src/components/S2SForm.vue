@@ -2,6 +2,8 @@
 	<v-flex>
 		<v-toolbar light>
 			<v-toolbar-title>{{ title }}</v-toolbar-title>
+			<v-spacer></v-spacer>
+			<slot name="toolbar-content"></slot>
 		</v-toolbar>
 		<v-container fluid elevation-0 grid-list-md text-xs-center>
 			<slot></slot>
