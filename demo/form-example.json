@@ -49,6 +49,12 @@
 			"validation": "required"
 		},
 		{
+			"label": "Date Of Birth",
+			"name": "dob",
+			"component": "v-date-picker",
+			"validation": "required"
+		},
+		{
 			"component": "v-slot",
 			"slotName": "test"
 		},

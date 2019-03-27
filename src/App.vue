@@ -5,18 +5,15 @@
 				<S2SCard>
 					<S2SFormGenerator :schema="formExample" :apiLookup="apiFetchMock">
 						<template v-slot:test="{ model }">
-							<v-select
-								:items="[{ name: 'wood', id: 1 }, { name: 'steel', id: 2 }, { name: 'glass', id: 3 }]"
-								v-model="model.material"
-								item-value="id"
-								item-text="name"
-								multiple
-								label="Materials"
-							></v-select>
-
-							<v-flex xs12 v-if="model.material">
-								<v-text-field label="Type" v-model="model.material.type"></v-text-field>
-								<v-text-field label="Thickness" v-model="model.material.thickness"></v-text-field>
+							<v-flex xs12>
+								<v-select
+									:items="[{ name: 'wood', id: 1 }, { name: 'steel', id: 2 }, { name: 'glass', id: 3 }]"
+									v-model="model.material"
+									item-value="id"
+									item-text="name"
+									multiple
+									label="Materials"
+								></v-select>
 							</v-flex>
 						</template>
 					</S2SFormGenerator>
@@ -43,8 +40,7 @@ export default {
 	data() {
 		return {
 			result: 0,
-			formExample: formExample,
-			model: {}
+			formExample: formExample
 		};
 	},
 	methods: {

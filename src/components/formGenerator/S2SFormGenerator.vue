@@ -34,23 +34,17 @@
 			></v-autocomplete>
 			<v-menu
 				v-else-if="field.component === 'v-date-picker'"
-				ref="menu"
 				v-model="menu[field.name]"
 				:close-on-content-click="false"
 				:nudge-right="40"
-				:return-value.sync="date[field.name]"
 				lazy
 				transition="scale-transition"
 				offset-y
 				full-width
 				min-width="290px"
 			>
-				<v-text-field slot="activator" v-model="date[field.name]" :label="field.label" prepend-icon="event" readonly></v-text-field>
-				<v-date-picker v-model="date[field.name]" no-title scrollable>
-					<v-spacer></v-spacer>
-					<v-btn text color="primary" @click="menu[field.name] = false">Cancel</v-btn>
-					<v-btn text color="primary" @click="$refs.menu.save(date)">OK</v-btn>
-				</v-date-picker>
+				<v-text-field slot="activator" v-model="model[field.name]" :label="field.label" prepend-icon="event" readonly></v-text-field>
+				<v-date-picker v-model="model[field.name]" no-title scrollable></v-date-picker>
 			</v-menu>
 			<label v-else-if="field.component === 'v-label'">{{ field.label }}</label>
 			<slot v-else-if="field.component === 'v-slot'" :name="field.slotName" :model="model"></slot>
