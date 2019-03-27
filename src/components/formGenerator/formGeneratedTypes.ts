@@ -1,5 +1,5 @@
-type ComponentName = "v-text-field" | "v-select" | "v-checkbox" | "v-autocomplete" | "v-label" | "v-date-picker";
-export type ComponentType = VTextField | VSelect | VCheckbox | VAutocomplete | VLabel | VDataPicker;
+type ComponentName = "v-text-field" | "v-select" | "v-checkbox" | "v-autocomplete" | "v-label" | "v-date-picker" | "v-slot";
+export type ComponentType = VTextField | VSelect | VCheckbox | VAutocomplete | VLabel | VDataPicker | VSLot;
 
 export interface Layout {
 	properties: {
@@ -47,6 +47,11 @@ interface VLabel extends ComponentBase {
 
 interface VDataPicker extends ComponentBase {
 	component: "v-date-picker";
+}
+
+interface VSLot {
+	component: "v-slot";
+	slotName: string;
 }
 
 export interface Form {

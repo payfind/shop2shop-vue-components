@@ -45,7 +45,7 @@
 				full-width
 				min-width="290px"
 			>
-				<v-text-field slot="activator" v-model="date[field.name]" label="Picker in menu" prepend-icon="event" readonly></v-text-field>
+				<v-text-field slot="activator" v-model="date[field.name]" :label="field.label" prepend-icon="event" readonly></v-text-field>
 				<v-date-picker v-model="date[field.name]" no-title scrollable>
 					<v-spacer></v-spacer>
 					<v-btn text color="primary" @click="menu[field.name] = false">Cancel</v-btn>
@@ -53,6 +53,7 @@
 				</v-date-picker>
 			</v-menu>
 			<label v-else-if="field.component === 'v-label'">{{ field.label }}</label>
+			<slot v-else-if="field.component === 'v-slot'" :name="field.slotName" :model="model"></slot>
 		</v-flex>
 	</v-layout>
 </template>
@@ -118,18 +119,17 @@ export default class S2SFormGenerator extends Vue {
 		this.model = this.data;
 	}
 
-	private fetchLookups() {
+	private async fetchLookups() {
 		for (let field of this.formFields) {
-			if (field.component === "v-select" || field.component === "v-autocomplete") {
+			if (field.component !== "v-slot" && (field.component === "v-select" || field.component === "v-autocomplete")) {
 				if (typeof field.items === "string") {
-					this.apiLookup(field.items).then(response => {
-						if (!response.data) {
-							Vue.set(this.lookups, field.name, response);
-						} else {
-							const data = response.data.results ? response.data.results : response.data;
-							Vue.set(this.lookups, field.name, data);
-						}
-					});
+					const response = await this.apiLookup(field.items);
+					if (!response.data) {
+						Vue.set(this.lookups, field.name, response);
+					} else {
+						const data = response.data.results ? response.data.results : response.data;
+						Vue.set(this.lookups, field.name, data);
+					}
 				} else {
 					Vue.set(this.lookups, field.name, field.items);
 				}
@@ -166,6 +166,8 @@ export default class S2SFormGenerator extends Vue {
 		const attributes: { [name: string]: string } = {};
 		for (let i = 0; i < this.formFields.length; i++) {
 			const component = this.formFields[i];
+			if (component.component === "v-slot") continue; // For the time being we wont build validation dictionary for slot component
+
 			attributes[component.name] = component.label;
 		}
 		const dictionary = {

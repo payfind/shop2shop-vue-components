@@ -174,6 +174,24 @@
             ],
             "type": "object"
         },
+        "VSLot": {
+            "properties": {
+                "component": {
+                    "enum": [
+                        "v-slot"
+                    ],
+                    "type": "string"
+                },
+                "slotName": {
+                    "type": "string"
+                }
+            },
+            "required": [
+                "component",
+                "slotName"
+            ],
+            "type": "object"
+        },
         "VSelect": {
             "properties": {
                 "component": {
@@ -276,6 +294,9 @@
                     },
                     {
                         "$ref": "#/definitions/VDataPicker"
+                    },
+                    {
+                        "$ref": "#/definitions/VSLot"
                     }
                 ]
             },

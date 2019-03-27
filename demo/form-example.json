@@ -49,16 +49,14 @@
 			"validation": "required"
 		},
 		{
+			"component": "v-slot",
+			"slotName": "test"
+		},
+		{
 			"label": "Transport",
 			"name": "transport",
 			"component": "v-select",
 			"items": ["Train", "Bicycle", "Walking", "Car"],
-			"validation": "required"
-		},
-		{
-			"label": "Message",
-			"name": "message",
-			"component": "v-text-field",
 			"validation": "required"
 		}
 	]
