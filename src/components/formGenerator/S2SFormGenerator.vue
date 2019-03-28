@@ -134,7 +134,7 @@ export default class S2SFormGenerator extends Vue {
 	private buildDefaultValues() {
 		for (let field of this.formFields) {
 			if (field.component === "v-checkbox" && !this.model[field.name]) this.model[field.name] = false;
-			else if (field.component === "v-slot" && !this.model[field.slotName]) this.model[field.slotName] = {};
+			else if (field.component === "v-slot" && !this.model[field.slotName]) this.model[field.slotName] = field.defaultVal || {};
 		}
 	}
 

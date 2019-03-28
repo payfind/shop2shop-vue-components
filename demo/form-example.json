@@ -56,7 +56,8 @@
 		},
 		{
 			"component": "v-slot",
-			"slotName": "test"
+			"slotName": "test",
+			"defaultVal": []
 		},
 		{
 			"label": "Transport",

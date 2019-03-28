@@ -52,6 +52,7 @@ interface VDataPicker extends ComponentBase {
 interface VSLot {
 	component: "v-slot";
 	slotName: string;
+	defaultVal: any;
 }
 
 export interface Form {

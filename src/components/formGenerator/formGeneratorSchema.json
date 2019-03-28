@@ -182,12 +182,15 @@
                     ],
                     "type": "string"
                 },
+                "defaultVal": {
+                },
                 "slotName": {
                     "type": "string"
                 }
             },
             "required": [
                 "component",
+                "defaultVal",
                 "slotName"
             ],
             "type": "object"
