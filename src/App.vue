@@ -1,7 +1,7 @@
 <template>
 	<v-app>
 		<v-content>
-			<S2SForm title="test Title">
+			<S2SForm dark title="test Title" color="primary">
 				<S2SCard>
 					<S2SFormGenerator :schema="formExample" :apiLookup="apiFetchMock">
 						<template v-slot:test="{ model }">

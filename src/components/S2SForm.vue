@@ -1,6 +1,6 @@
 <template>
 	<v-flex>
-		<v-toolbar light>
+		<v-toolbar :dark="dark" :light="light" :color="color">
 			<v-toolbar-title>{{ title }}</v-toolbar-title>
 			<v-spacer></v-spacer>
 			<slot name="toolbar-content"></slot>
@@ -17,6 +17,9 @@ import { Vue, Watch, Component, Prop } from "vue-property-decorator";
 @Component
 export default class S2SForm extends Vue {
 	@Prop() title!: string;
+	@Prop() color!: string;
+	@Prop() dark!: boolean;
+	@Prop() light!: boolean;
 }
 </script>
 
