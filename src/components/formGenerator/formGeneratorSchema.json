@@ -38,6 +38,8 @@
                 },
                 "containerProperties": {
                 },
+                "defaultVal": {
+                },
                 "hidden": {
                     "type": "boolean"
                 },
@@ -85,6 +87,8 @@
                 },
                 "containerProperties": {
                 },
+                "defaultVal": {
+                },
                 "hidden": {
                     "type": "boolean"
                 },
@@ -118,6 +122,8 @@
                 },
                 "containerProperties": {
                 },
+                "defaultVal": {
+                },
                 "hidden": {
                     "type": "boolean"
                 },
@@ -150,6 +156,8 @@
                     "type": "string"
                 },
                 "containerProperties": {
+                },
+                "defaultVal": {
                 },
                 "hidden": {
                     "type": "boolean"
@@ -205,6 +213,8 @@
                 },
                 "containerProperties": {
                 },
+                "defaultVal": {
+                },
                 "hidden": {
                     "type": "boolean"
                 },
@@ -251,6 +261,8 @@
                     "type": "string"
                 },
                 "containerProperties": {
+                },
+                "defaultVal": {
                 },
                 "hidden": {
                     "type": "boolean"
