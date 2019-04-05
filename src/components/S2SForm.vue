@@ -21,14 +21,6 @@ export default class S2SForm extends Vue {
 	@Prop() dark!: boolean;
 	@Prop() light!: boolean;
 	@Prop() fillHeight!: boolean;
-
-	async getHeight() {
-		await this.$nextTick();
-		const container = this.$refs["container"] as any;
-		const toolbar = this.$refs["toolbar"] as any;
-		debugger;
-		return container.offsetHeight - toolbar.$el.offsetHeight;
-	}
 }
 </script>
 
