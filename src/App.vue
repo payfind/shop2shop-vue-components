@@ -1,7 +1,12 @@
 <template>
 	<v-app>
+		<v-toolbar ref app>
+			<v-toolbar-title>Yes Please</v-toolbar-title>
+			<v-spacer></v-spacer>
+			<slot name="toolbar-content"></slot>
+		</v-toolbar>
 		<v-content>
-			<S2SForm dark title="test Title" color="primary">
+			<S2SForm dark title="test Title" color="primary" fill-height>
 				<S2SCard>
 					<S2SFormGenerator :schema="formExample" :apiLookup="apiFetchMock">
 						<template v-slot:test="{ model }">

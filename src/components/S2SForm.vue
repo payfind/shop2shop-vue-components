@@ -1,11 +1,11 @@
 <template>
-	<v-flex>
-		<v-toolbar :dark="dark" :light="light" :color="color">
-			<v-toolbar-title>{{ title }}</v-toolbar-title>
-			<v-spacer></v-spacer>
-			<slot name="toolbar-content"></slot>
-		</v-toolbar>
-		<v-container fluid elevation-0 grid-list-md text-xs-center>
+	<v-flex :fill-height="fillHeight">
+		<v-container ref="container" fluid elevation-0 grid-list-md text-xs-center :fill-height="fillHeight">
+			<v-toolbar ref="toolbar" :dark="dark" :light="light" :color="color" absolute>
+				<v-toolbar-title>{{ title }}</v-toolbar-title>
+				<v-spacer></v-spacer>
+				<slot name="toolbar-content"></slot>
+			</v-toolbar>
 			<slot></slot>
 		</v-container>
 	</v-flex>
@@ -20,6 +20,15 @@ export default class S2SForm extends Vue {
 	@Prop() color!: string;
 	@Prop() dark!: boolean;
 	@Prop() light!: boolean;
+	@Prop() fillHeight!: boolean;
+
+	async getHeight() {
+		await this.$nextTick();
+		const container = this.$refs["container"] as any;
+		const toolbar = this.$refs["toolbar"] as any;
+		debugger;
+		return container.offsetHeight - toolbar.$el.offsetHeight;
+	}
 }
 </script>
 

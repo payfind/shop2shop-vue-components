@@ -1,5 +1,5 @@
 <template>
-	<v-card>
+	<v-card width="100%">
 		<v-toolbar ref="toolbar" light v-if="title || hasSlot('toolbar-content')" :class="computeElevation">
 			<v-toolbar-title>{{ title }}</v-toolbar-title>
 			<v-spacer v-if="title"></v-spacer>
