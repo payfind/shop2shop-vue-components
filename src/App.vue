@@ -23,6 +23,11 @@
 						</template>
 					</S2SFormGenerator>
 				</S2SCard>
+				<br />
+				<S2SCard>
+					<v-flex xs12>--- File Uploader ---</v-flex>
+					<S2SFileUploader></S2SFileUploader>
+				</S2SCard>
 			</S2SForm>
 		</v-content>
 	</v-app>
@@ -31,6 +36,7 @@
 <script>
 import S2SForm from "./components/S2SForm.vue";
 import S2SCard from "./components/S2SCard.vue";
+import S2SFileUploader from "./components/S2SFileUploader.vue";
 import S2SCurrencyInput from "./components/S2SCurrencyInput.vue";
 import S2SFormGenerator from "./components/formGenerator/S2SFormGenerator.vue";
 import formExample from "../demo/form-example.json";
@@ -40,7 +46,8 @@ export default {
 	components: {
 		S2SCard,
 		S2SForm,
-		S2SFormGenerator
+		S2SFormGenerator,
+		S2SFileUploader
 	},
 	data() {
 		return {
