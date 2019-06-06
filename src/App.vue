@@ -8,7 +8,11 @@
 		<v-content>
 			<S2SForm dark title="test Title" color="primary" fill-height>
 				<S2SCard>
-					<S2SFormGenerator :schema="formExample" :apiLookup="apiFetchMock">
+					<S2SFormGenerator
+						:schema="formExample"
+						:apiLookup="apiFetchMock"
+						:data="{ profile: { name: 'Name' }, parent: { child: { dob: '2019-05-21' } } }"
+					>
 						<template v-slot:test="{ model }">
 							<v-flex xs12>
 								<v-select

@@ -15,6 +15,11 @@
 			"component": "v-checkbox"
 		},
 		{
+			"label": "Nested Flag",
+			"name": "parent.flag",
+			"component": "v-checkbox"
+		},
+		{
 			"label": "Description",
 			"name": "description",
 			"component": "v-text-field",
@@ -29,10 +34,19 @@
 			"validation": "required"
 		},
 		{
-			"label": "Name",
-			"name": "name",
-			"component": "v-text-field",
+			"label": "Double neseted Select Organisation",
+			"name": "parent.child.organisationid",
+			"component": "v-autocomplete",
+			"items": "organisations",
+			"properties": { "item-value": "id", "item-text": "name" },
 			"validation": "required"
+		},
+		{
+			"label": "Name",
+			"name": "profile.name",
+			"component": "v-text-field",
+			"validation": "required",
+			"defaultVal": ""
 		},
 		{
 			"label": "Gender",
@@ -49,8 +63,8 @@
 			"validation": "required"
 		},
 		{
-			"label": "Date Of Birth",
-			"name": "dob",
+			"label": "Nested Date Of Birth",
+			"name": "parent.child.dob",
 			"component": "v-date-picker",
 			"validation": "required"
 		},

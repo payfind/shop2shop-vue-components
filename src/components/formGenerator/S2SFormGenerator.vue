@@ -4,28 +4,36 @@
 			<v-text-field
 				v-if="field.component === 'v-text-field'"
 				:label="field.label"
-				v-model="model[field.name]"
 				v-bind="field.properties"
 				v-validate="field.validation"
 				:data-vv-name="field.name"
 				:error-messages="errors.collect(field.name)"
+				:value="getValue(field.name)"
+				@input="onInput($event, field.name)"
 			></v-text-field>
 			<v-select
 				v-else-if="field.component === 'v-select'"
 				:label="field.label"
 				:items="lookups[field.name]"
-				v-model="model[field.name]"
+				:value="getValue(field.name)"
+				@input="onInput($event, field.name)"
 				v-bind="field.properties"
 				v-validate="field.validation"
 				:data-vv-name="field.name"
 				:error-messages="errors.collect(field.name)"
 			></v-select>
-			<v-checkbox v-else-if="field.component === 'v-checkbox'" v-model="model[field.name]" :label="field.label"></v-checkbox>
+			<v-checkbox
+				v-else-if="field.component === 'v-checkbox'"
+				:value="getValue(field.name)"
+				@change="onInput($event, field.name)"
+				:label="field.label"
+			></v-checkbox>
 			<v-autocomplete
 				v-else-if="field.component === 'v-autocomplete'"
 				:label="field.label"
 				v-bind="field.properties"
-				v-model="model[field.name]"
+				:value="getValue(field.name)"
+				@input="onInput($event, field.name)"
 				:search-input.sync="search[field.name]"
 				:items="lookups[field.name]"
 				v-validate="field.validation"
@@ -43,8 +51,8 @@
 				full-width
 				min-width="290px"
 			>
-				<v-text-field slot="activator" v-model="model[field.name]" :label="field.label" prepend-icon="event" readonly></v-text-field>
-				<v-date-picker v-model="model[field.name]" no-title scrollable></v-date-picker>
+				<v-text-field slot="activator" :value="getValue(field.name)" :label="field.label" prepend-icon="event" readonly></v-text-field>
+				<v-date-picker :value="getValue(field.name)" @input="onInput($event, field.name)" no-title scrollable></v-date-picker>
 			</v-menu>
 			<label v-else-if="field.component === 'v-label'">{{ field.label }}</label>
 			<slot v-else-if="field.component === 'v-slot'" :name="field.slotName" :model="model"></slot>
@@ -113,6 +121,10 @@ export default class S2SFormGenerator extends Vue {
 		this.model = this.data;
 	}
 
+	private onInput(value: any, fieldName: string) {
+		this.setValue(fieldName, value);
+	}
+
 	private async fetchLookups() {
 		for (let field of this.formFields) {
 			if (field.component !== "v-slot" && (field.component === "v-select" || field.component === "v-autocomplete")) {
@@ -131,12 +143,53 @@ export default class S2SFormGenerator extends Vue {
 		}
 	}
 
+	private isObject(item: any) {
+		return item && typeof item === "object" && !Array.isArray(item);
+	}
+
+	/**
+	 * Deep merge two objects.
+	 * @param target
+	 * @param ...sources
+	 */
+	private mergeDeep(target: any, ...sources: any): any {
+		if (!sources.length) return target;
+		const source = sources.shift();
+
+		if (this.isObject(target) && this.isObject(source)) {
+			for (const key in source) {
+				if (this.isObject(source[key])) {
+					if (!target[key]) Object.assign(target, { [key]: {} });
+					this.mergeDeep(target[key], source[key]);
+				} else {
+					Object.assign(target, { [key]: source[key] });
+				}
+			}
+		}
+
+		return this.mergeDeep(target, ...sources);
+	}
+
+	private buildObjectFromString(keyString: string, defaultVal: any) {
+		let str = keyString,
+			arr = str.split("."),
+			obj,
+			o: any = (obj = {});
+
+		for (let i = 0; i < arr.length; i++) {
+			if (arr.length === i + 1) o = o[arr[i]] = defaultVal;
+			else o = o[arr[i]] = {};
+		}
+
+		this.model = this.mergeDeep(this.model, obj);
+	}
+
 	private buildDefaultValues() {
 		for (let field of this.formFields) {
 			// We always want checkboxes to be defaulted to false!
-			if (field.component === "v-checkbox" && !this.model[field.name]) this.model[field.name] = false;
-			else if (field.component !== "v-slot" && !this.model[field.name]) this.model[field.name] = field.defaultVal;
-			else if (field.component === "v-slot" && !this.model[field.slotName]) this.model[field.slotName] = field.defaultVal || {};
+			if (field.component === "v-checkbox" && !this.getValue(field.name)) this.buildObjectFromString(field.name, false);
+			else if (field.component !== "v-slot" && !this.getValue(field.name)) this.buildObjectFromString(field.name, field.defaultVal);
+			else if (field.component === "v-slot" && !this.getValue(field.slotName)) this.buildObjectFromString(field.slotName, field.defaultVal || {});
 		}
 	}
 
@@ -171,6 +224,30 @@ export default class S2SFormGenerator extends Vue {
 			attributes
 		};
 		return dictionary;
+	}
+
+	/**
+	 * Get any value in an object spesified by the string. It supports nested object which can be spesified by dot notation
+	 */
+	private getValue(fieldName: string) {
+		return fieldName.split(".").reduce((obj, key) => (obj && obj[key] !== "undefined" ? obj[key] : undefined), this.model);
+	}
+
+	/**
+	 * This will set a value, building a nested object according to the path parameter
+	 * @param path This will build a nestes object according to the dot notation string
+	 * @param value The will that will be assign to the key, either if it's nested or flat
+	 */
+	private setValue(path: string, value: any) {
+		var schema = this.model; // a moving reference to internal objects within obj
+		var pList = path.split(".");
+		var len = pList.length;
+		for (var i = 0; i < len - 1; i++) {
+			var elem = pList[i];
+			if (!schema[elem]) schema[elem] = {};
+			schema = schema[elem];
+		}
+		schema[pList[len - 1]] = value;
 	}
 }
 </script>
