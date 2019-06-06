@@ -24,7 +24,7 @@
 			></v-select>
 			<v-checkbox
 				v-else-if="field.component === 'v-checkbox'"
-				:value="getValue(field.name)"
+				:input-value="getValue(field.name)"
 				@change="onInput($event, field.name)"
 				:label="field.label"
 			></v-checkbox>

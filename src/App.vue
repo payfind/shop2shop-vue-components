@@ -11,7 +11,7 @@
 					<S2SFormGenerator
 						:schema="formExample"
 						:apiLookup="apiFetchMock"
-						:data="{ profile: { name: 'Name' }, parent: { child: { dob: '2019-05-21' } } }"
+						:data="{ flag: true, profile: { name: 'Name' }, parent: { child: { dob: '2019-05-21' }, flag: true } }"
 					>
 						<template v-slot:test="{ model }">
 							<v-flex xs12>
