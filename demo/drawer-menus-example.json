@@ -1,0 +1,147 @@
+[
+	{
+		"text": "Users",
+		"model": false,
+		"hidden": true,
+		"children": [
+			{
+				"text": "Staff"
+			},
+			{
+				"text": "Customers"
+			}
+		]
+	},
+	{
+		"text": "Organisations",
+		"icon": "store_mall_directory",
+		"href": "#"
+	},
+	{
+		"text": "Connections",
+		"hidden": true
+	},
+	{
+		"text": "Recons",
+		"icon": "cloud_upload",
+		"model": false,
+		"children": [
+			{
+				"text": "Upload Statements",
+				"href": "#"
+			},
+			{
+				"text": "Upload Recon",
+				"href": "#"
+			}
+		]
+	},
+	{
+		"text": "Reports",
+		"model": false,
+		"hidden": true,
+		"children": [
+			{
+				"text": "Recons"
+			},
+			{
+				"text": "Statements"
+			},
+			{
+				"text": "Orders"
+			}
+		]
+	},
+	{
+		"text": "Accounts",
+		"icon": "account_balance_wallet",
+		"model": false,
+		"hidden": true,
+		"children": [
+			{
+				"text": "Gateway"
+			},
+			{
+				"text": "User"
+			},
+			{
+				"text": "Add Account",
+				"href": "#"
+			},
+			{
+				"text": "Refunds",
+				"href": "#"
+			},
+			{
+				"text": "Marketplace",
+				"href": "#"
+			}
+		]
+	},
+	{
+		"text": "History",
+		"icon": "history",
+		"model": false,
+		"children": [
+			{
+				"text": "Transactions",
+				"href": "#"
+			}
+		]
+	},
+	{
+		"text": "Safes",
+		"icon": "security",
+		"model": false,
+		"children": [
+			{
+				"text": "Clients",
+				"href": "#"
+			},
+			{
+				"text": "Create Safe",
+				"href": "#"
+			},
+			{
+				"text": "Cash Centres",
+				"href": "#"
+			},
+			{
+				"text": "CIT Providers",
+				"href": "#"
+			},
+			{
+				"text": "Close Possible Bags",
+				"href": "#"
+			}
+		]
+	},
+	{
+		"text": "Analytics",
+		"icon": "assessment",
+		"model": false,
+		"children": [
+			{
+				"text": "Overview",
+				"href": "#"
+			},
+			{
+				"text": "Accounting",
+				"href": "#"
+			}
+		]
+	},
+	{
+		"text": "Settings",
+		"model": false,
+		"hidden": true,
+		"children": [
+			{
+				"text": "Fees"
+			},
+			{
+				"text": "Notifications"
+			}
+		]
+	}
+]
