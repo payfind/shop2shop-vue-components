@@ -1,6 +1,6 @@
 {
 	"name": "shop2shop-vue-components",
-	"version": "0.7.1",
+	"version": "0.8.0",
 	"main": "./dist/shop2shop.common.js",
 	"typings": "dist/index",
 	"scripts": {
