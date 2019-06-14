@@ -27,7 +27,6 @@ export default class S2SFileUpload extends Vue {
 	private async onFileSelected(e: any) {
 		// const response = await this.api(e.target.files[0]);
 		const response: any = { data: { id: "xxx" } };
-		debugger;
 		this.$emit("change", response.data[this.itemValue] || response.data);
 
 		if (!this.multiple) {
