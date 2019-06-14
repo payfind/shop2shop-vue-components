@@ -51,11 +51,27 @@
 				full-width
 				min-width="290px"
 			>
-				<v-text-field slot="activator" :value="getValue(field.name)" :label="field.label" prepend-icon="event" readonly></v-text-field>
-				<v-date-picker :value="getValue(field.name)" @input="onInput($event, field.name)" no-title scrollable></v-date-picker>
+				<v-text-field
+					slot="activator"
+					:value="getValue(field.name)"
+					:label="field.label"
+					prepend-icon="event"
+					readonly
+					:data-vv-name="field.name"
+					v-validate="field.validation"
+					:error-messages="errors.collect(field.name)"
+				></v-text-field>
+				<v-date-picker :value="getValue(field.name)" @change="onInput($event, field.name)" no-title scrollable></v-date-picker>
 			</v-menu>
 			<label v-else-if="field.component === 'v-label'">{{ field.label }}</label>
 			<slot v-else-if="field.component === 'v-slot'" :name="field.slotName" :model="model"></slot>
+			<S2SFileUploader
+				v-else-if="field.component === 'v-file-uploader'"
+				v-bind="field.properties"
+				@change="onInput($event, field.name)"
+				:value="getValue(field.name)"
+				:api="apiLookup(field.api)"
+			></S2SFileUploader>
 		</v-flex>
 	</v-layout>
 </template>
@@ -71,6 +87,9 @@ import VeeValidate from "vee-validate";
 Vue.use(VeeValidate);
 
 @Component({
+	components: {
+		S2SFileUploader: () => import(/* webpackChunkName: "s2s-file-uploader" */ "@/components/S2SFileUploader.vue")
+	},
 	$_veeValidate: {
 		validator: "new"
 	}
@@ -239,15 +258,16 @@ export default class S2SFormGenerator extends Vue {
 	 * @param value The will that will be assign to the key, either if it's nested or flat
 	 */
 	private setValue(path: string, value: any) {
-		var schema = this.model; // a moving reference to internal objects within obj
-		var pList = path.split(".");
-		var len = pList.length;
-		for (var i = 0; i < len - 1; i++) {
-			var elem = pList[i];
+		let schema = this.model; // a moving reference to internal objects within obj
+		const pList = path.split(".");
+		const len = pList.length;
+		for (let i = 0; i < len - 1; i++) {
+			const elem = pList[i];
 			if (!schema[elem]) schema[elem] = {};
 			schema = schema[elem];
 		}
-		schema[pList[len - 1]] = value;
+		this.$set(schema, pList[len - 1], value);
+		this.$forceUpdate();
 	}
 }
 </script>

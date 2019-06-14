@@ -9,9 +9,10 @@
 			<S2SForm dark title="test Title" color="primary" fill-height>
 				<S2SCard>
 					<S2SFormGenerator
+						ref="form"
 						:schema="formExample"
 						:apiLookup="apiFetchMock"
-						:data="{ flag: true, profile: { name: 'Name' }, parent: { child: { dob: '2019-05-21' }, flag: true } }"
+						:data="{ flag: true, profile: { name: 'Name' }, parent: { flag: true } }"
 					>
 						<template v-slot:test="{ model }">
 							<v-flex xs12>
@@ -26,6 +27,7 @@
 							</v-flex>
 						</template>
 					</S2SFormGenerator>
+					<v-btn color="error" @click="validate()">Validate</v-btn>
 				</S2SCard>
 				<br />
 				<S2SCard>
@@ -62,6 +64,21 @@ export default {
 	methods: {
 		async apiFetchMock(apiType) {
 			if (apiType === "organisations") return ["test1", "test2", "test3"];
+			if (apiType === "transportApi") return this.transportApi;
+		},
+		transportApi(valObj) {
+			return new Promise(function(resolve, reject) {
+				getData(someValue, function(error, result) {
+					if (error) {
+						reject(error);
+					} else {
+						resolve(result);
+					}
+				});
+			});
+		},
+		validate() {
+			this.$refs["form"].validate();
 		}
 	}
 };

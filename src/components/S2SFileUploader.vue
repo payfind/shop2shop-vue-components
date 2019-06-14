@@ -15,6 +15,8 @@ import { Vue, Watch, Component, Prop } from "vue-property-decorator";
 export default class S2SFileUpload extends Vue {
 	@Prop({ default: "Upload" }) uploadButtonText!: string;
 	@Prop(Boolean) multiple!: boolean;
+	@Prop() api!: (file: File) => Promise<{ data: any }>;
+	@Prop() itemValue!: string;
 
 	public selectedFiles: File[] = [];
 
@@ -22,7 +24,12 @@ export default class S2SFileUpload extends Vue {
 		(<any>this.$refs["file"]).click();
 	}
 
-	private onFileSelected(e: any) {
+	private async onFileSelected(e: any) {
+		// const response = await this.api(e.target.files[0]);
+		const response: any = { data: { id: "xxx" } };
+		debugger;
+		this.$emit("change", response.data[this.itemValue] || response.data);
+
 		if (!this.multiple) {
 			this.selectedFiles = [];
 			this.selectedFiles.push(e.target.files[0]);

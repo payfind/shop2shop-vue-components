@@ -79,6 +79,14 @@
 			"component": "v-select",
 			"items": ["Train", "Bicycle", "Walking", "Car"],
 			"validation": "required"
+		},
+		{
+			"label": "Transport",
+			"name": "fileUploader",
+			"component": "v-file-uploader",
+			"properties": { "uploadButtonText": "Upload Button", "item-value": "id" },
+			"api": "transportApi",
+			"defaultVal": []
 		}
 	]
 }
