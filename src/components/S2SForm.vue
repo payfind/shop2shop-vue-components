@@ -1,5 +1,15 @@
 <template>
-	<v-flex :fill-height="fillHeight">
+	<v-sheet elevation-0>
+		<v-toolbar>
+			<v-toolbar-title>{{ title }}</v-toolbar-title>
+			<v-spacer></v-spacer>
+			<slot name="toolbar-content"></slot>
+		</v-toolbar>
+		<v-container grid-list-xs>
+			<slot></slot>
+		</v-container>
+	</v-sheet>
+	<!-- <v-flex :fill-height="fillHeight">
 		<v-toolbar v-if="!fillHeight" :dark="dark" :light="light" :color="color">
 			<v-toolbar-title>{{ title }}</v-toolbar-title>
 			<v-spacer></v-spacer>
@@ -8,7 +18,7 @@
 		<v-container ref="container" fluid elevation-0 grid-list-md text-xs-center :fill-height="fillHeight" :d-block="fillHeight">
 			<slot></slot>
 		</v-container>
-	</v-flex>
+	</v-flex>-->
 </template>
 
 <script lang="ts">
