@@ -10,7 +10,7 @@
 		</v-app-bar>
 		<v-content>
 			<S2SForm dark title="test Title" color="primary" fill-height>
-				<S2SCard>
+				<S2SCard title="Card Title">
 					<S2SFormGenerator
 						:schema="formExample"
 						:apiLookup="apiFetchMock"

@@ -1,11 +1,11 @@
 <template>
-	<v-sheet elevation-0>
+	<v-sheet elevation-0 class="background" height="100%">
 		<v-toolbar>
 			<v-toolbar-title>{{ title }}</v-toolbar-title>
 			<v-spacer></v-spacer>
 			<slot name="toolbar-content"></slot>
 		</v-toolbar>
-		<v-container grid-list-xs>
+		<v-container>
 			<slot></slot>
 		</v-container>
 	</v-sheet>

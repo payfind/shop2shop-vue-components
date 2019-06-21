@@ -1,6 +1,6 @@
 <template>
 	<v-layout row wrap v-bind="layout.properties" v-if="valid">
-		<v-flex xs12 md6 v-for="(field, index) in formFields" :key="index" v-show="!field.hidden" v-bind="field.containerProperties">
+		<v-flex xs12 md6 v-for="(field, index) in formFields" :key="index" v-show="!field.hidden" v-bind="field.containerProperties" px-2>
 			<v-text-field
 				v-if="field.component === 'v-text-field'"
 				:label="field.label"
