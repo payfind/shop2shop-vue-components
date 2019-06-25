@@ -21,6 +21,7 @@ export interface ComponentBase {
 	properties?: ComponentProperties;
 	validation?: string;
 	containerProperties?: any;
+	breakpoints?: {};
 	defaultVal?: any;
 }
 

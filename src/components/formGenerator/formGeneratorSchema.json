@@ -30,6 +30,11 @@
         },
         "VAutocomplete": {
             "properties": {
+                "breakpoints": {
+                    "properties": {
+                    },
+                    "type": "object"
+                },
                 "component": {
                     "enum": [
                         "v-autocomplete"
@@ -79,6 +84,11 @@
         },
         "VCheckbox": {
             "properties": {
+                "breakpoints": {
+                    "properties": {
+                    },
+                    "type": "object"
+                },
                 "component": {
                     "enum": [
                         "v-checkbox"
@@ -114,6 +124,11 @@
         },
         "VDataPicker": {
             "properties": {
+                "breakpoints": {
+                    "properties": {
+                    },
+                    "type": "object"
+                },
                 "component": {
                     "enum": [
                         "v-date-picker"
@@ -149,6 +164,11 @@
         },
         "VLabel": {
             "properties": {
+                "breakpoints": {
+                    "properties": {
+                    },
+                    "type": "object"
+                },
                 "component": {
                     "enum": [
                         "v-label"
@@ -205,6 +225,11 @@
         },
         "VSelect": {
             "properties": {
+                "breakpoints": {
+                    "properties": {
+                    },
+                    "type": "object"
+                },
                 "component": {
                     "enum": [
                         "v-select"
@@ -254,6 +279,11 @@
         },
         "VTextField": {
             "properties": {
+                "breakpoints": {
+                    "properties": {
+                    },
+                    "type": "object"
+                },
                 "component": {
                     "enum": [
                         "v-text-field"

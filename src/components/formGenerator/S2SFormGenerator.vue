@@ -1,6 +1,6 @@
 <template>
 	<v-layout row wrap v-bind="layout.properties" v-if="valid">
-		<v-flex xs12 md6 v-for="(field, index) in formFields" :key="index" v-show="!field.hidden" v-bind="field.containerProperties" px-2>
+		<v-flex v-for="(field, index) in formFields" :key="index" v-show="!field.hidden" v-bind="applyProperties(field)" px-2>
 			<v-text-field
 				v-if="field.component === 'v-text-field'"
 				:label="field.label"
@@ -95,6 +95,9 @@ export default class S2SFormGenerator extends Vue {
 	private formGeneratorSchema = formGeneratorSchema;
 	private schemaForm!: Form;
 
+	// Default Break Points
+	private defaultBreakPoints = { md6: true, xs12: true };
+
 	mounted() {
 		const ajv = new Ajv();
 		const validate = ajv.compile(this.formGeneratorSchema);
@@ -106,6 +109,7 @@ export default class S2SFormGenerator extends Vue {
 
 		this.schemaForm = this.schema;
 		this.formFields = Object.freeze(this.schemaForm.fields);
+
 		this.layout = this.schemaForm.layout;
 		this.fetchLookups();
 		this.buildDefaultValues();
@@ -224,6 +228,15 @@ export default class S2SFormGenerator extends Vue {
 			attributes
 		};
 		return dictionary;
+	}
+
+	// Apply component container properties
+	private applyProperties(field: ComponentBase) {
+		let properties = field.containerProperties;
+		if (!field.breakpoints) properties = { ...properties, ...this.defaultBreakPoints };
+		else properties = { ...properties, ...field.breakpoints };
+
+		return properties;
 	}
 
 	/**
