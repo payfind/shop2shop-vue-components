@@ -5,7 +5,7 @@
 			<v-spacer></v-spacer>
 			<slot name="toolbar-content"></slot>
 		</v-toolbar>
-		<v-container>
+		<v-container fluid>
 			<slot></slot>
 		</v-container>
 	</v-sheet>
