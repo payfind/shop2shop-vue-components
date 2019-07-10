@@ -66,3 +66,8 @@ export default class S2SNavigationMenus extends Vue {
 	private selectedItem: any = {};
 }
 </script>
+<style scoped>
+.v-list--nav .v-list-item:not(:last-child):not(:only-child) {
+	margin-bottom: 0;
+}
+</style>
