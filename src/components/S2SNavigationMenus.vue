@@ -32,15 +32,7 @@
 						</v-list-item-action>
 					</v-list-item>
 				</v-list-group>
-
-				<v-list-item
-					v-else
-					:hidden="item.hidden"
-					:key="index"
-					v-model="selectedItem[index]"
-					active-class="accent--text"
-					@click="$router.push(item.href)"
-				>
+				<v-list-item v-else :hidden="item.hidden" :key="index" active-class="accent--text" @click="$router.push(item.href)">
 					<v-list-item-action>
 						<v-icon>{{ item.icon }}</v-icon>
 					</v-list-item-action>
