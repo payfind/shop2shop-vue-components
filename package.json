@@ -25,12 +25,12 @@
 		"typescript": "~3.2.4",
 		"typescript-eslint-parser": "^22.0.0",
 		"vee-validate": "^2.1.7",
-		"vue": "^2.6.6",
+		"vue": "^2.6.10",
 		"vue-class-component": "^7.0.1",
 		"vue-property-decorator": "^7.3.0",
 		"vue-template-compiler": "^2.6.6",
-		"vuetify": "^2.0.0-beta.7",
-		"vue-cli-plugin-vuetify": "git+https://github.com/vuetifyjs/vue-cli-plugin-vuetify.git#dev",
+		"vuetify": "^2.0.0",
+		"vue-cli-plugin-vuetify": "^0.6.1",
 		"vuetify-loader": "^1.2.2"
 	},
 	"files": [

@@ -9,27 +9,28 @@
 			<slot name="toolbar-content"></slot>
 		</v-app-bar>
 		<v-content>
-			<S2SForm dark title="test Title" color="primary" fill-height>
-				<S2SCard title="Card Title">
-					<S2SFormGenerator
-						:schema="formExample"
-						:apiLookup="apiFetchMock"
-						:data="{ flag: true, profile: { name: 'Name' }, parent: { child: { dob: '2019-05-21' }, flag: true } }"
-					>
-						<template v-slot:test="{ model }">
-							<v-flex xs12>
-								<v-select
-									:items="[{ name: 'wood', id: 1 }, { name: 'steel', id: 2 }, { name: 'glass', id: 3 }]"
-									v-model="model.test"
-									item-value="id"
-									item-text="name"
-									multiple
-									label="Materials"
-								></v-select>
-							</v-flex>
-						</template>
-					</S2SFormGenerator>
-				</S2SCard>
+			<S2SForm dark title="test Title" color="black white--text" fill-height>
+				<template #no-padding>
+					<v-card height="20" class="red"></v-card>
+				</template>
+				<S2SFormGenerator
+					:schema="formExample"
+					:apiLookup="apiFetchMock"
+					:data="{ flag: true, profile: { name: 'Name' }, parent: { child: { dob: '2019-05-21' }, flag: true } }"
+				>
+					<template v-slot:test="{ model }">
+						<v-flex xs12>
+							<v-select
+								:items="[{ name: 'wood', id: 1 }, { name: 'steel', id: 2 }, { name: 'glass', id: 3 }]"
+								v-model="model.test"
+								item-value="id"
+								item-text="name"
+								multiple
+								label="Materials"
+							></v-select>
+						</v-flex>
+					</template>
+				</S2SFormGenerator>
 				<br />
 				<S2SCard>
 					<v-flex xs12>--- File Uploader ---</v-flex>

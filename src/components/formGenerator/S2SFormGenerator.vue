@@ -45,13 +45,14 @@
 				v-model="menu[field.name]"
 				:close-on-content-click="false"
 				:nudge-right="40"
-				lazy
 				transition="scale-transition"
 				offset-y
 				full-width
 				min-width="290px"
 			>
-				<v-text-field slot="activator" :value="getValue(field.name)" :label="field.label" prepend-icon="event" readonly></v-text-field>
+				<template v-slot:activator="{ on }">
+					<v-text-field v-on="on" :value="getValue(field.name)" :label="field.label" prepend-icon="event" readonly></v-text-field>
+				</template>
 				<v-date-picker :value="getValue(field.name)" @input="onInput($event, field.name)" no-title scrollable></v-date-picker>
 			</v-menu>
 			<label v-else-if="field.component === 'v-label'">{{ field.label }}</label>
