@@ -1,48 +1,47 @@
 <template>
-	<v-list>
-		<template v-for="item in config">
-			<v-list-group
-				v-if="item.children"
-				v-model="item.model"
-				:key="item.text"
-				:prepend-icon="item.icon"
-				:hidden="item.hidden"
-				active-class="accent--text"
-				no-action
-			>
-				<!-- Nav Item Title -->
-				<v-list-tile slot="activator">
-					<v-list-tile-content>
-						<v-list-tile-title>{{ item.text }}</v-list-tile-title>
-					</v-list-tile-content>
-				</v-list-tile>
-				<!-- Nav Item Children-->
-				<v-list-tile
-					v-for="(child, i) in item.children"
-					:key="i"
-					@click="$router.push(child.href)"
-					:hidden="child.hidden"
-					style="background-color: var(--v-primary-base)"
+	<v-list nav :dense="dense" shaped>
+		<v-list-item-group v-model="selectedItem">
+			<template v-for="(item, index) in config">
+				<v-list-group
+					v-if="item.children"
+					:key="item.text"
+					:prepend-icon="item.icon"
+					:hidden="item.hidden"
+					active-class="accent--text secondary lighten-1"
+					no-action
 				>
-					<v-list-tile-content>
-						<v-list-tile-title>{{ child.text }}</v-list-tile-title>
-					</v-list-tile-content>
-					<v-list-tile-action v-if="child.icon">
-						<v-icon>{{ child.icon }}</v-icon>
-					</v-list-tile-action>
-				</v-list-tile>
-			</v-list-group>
-			<div v-else :hidden="item.hidden" :key="item.id">
-				<v-list-tile @click="$router.push(item.href)" :key="item.text" class="flat-nav-item">
-					<v-list-tile-action>
+					<!-- Nav Item Title -->
+					<template v-slot:activator>
+						<v-list-item-content>
+							<v-list-item-title v-text="item.text"></v-list-item-title>
+						</v-list-item-content>
+					</template>
+					<!-- Nav Item Children-->
+					<v-list-item
+						v-for="(child, i) in item.children"
+						:key="i"
+						@click="$router.push(child.href)"
+						:hidden="child.hidden"
+						active-class="accent--text secondary lighten-1"
+					>
+						<v-list-item-content>
+							<v-list-item-title>{{ child.text }}</v-list-item-title>
+						</v-list-item-content>
+						<v-list-item-action v-if="child.icon">
+							<v-icon>{{ child.icon }}</v-icon>
+						</v-list-item-action>
+					</v-list-item>
+				</v-list-group>
+				<v-list-item v-else :hidden="item.hidden" :key="index" active-class="accent--text" @click="$router.push(item.href)">
+					<v-list-item-action>
 						<v-icon>{{ item.icon }}</v-icon>
-					</v-list-tile-action>
-					<v-list-tile-content>
-						<v-list-tile-title>{{ item.text }}</v-list-tile-title>
-					</v-list-tile-content>
-				</v-list-tile>
-			</div>
-		</template>
+					</v-list-item-action>
+					<v-list-item-content>
+						<v-list-item-title>{{ item.text }}</v-list-item-title>
+					</v-list-item-content>
+				</v-list-item>
+			</template>
+		</v-list-item-group>
 	</v-list>
 </template>
 
@@ -54,17 +53,13 @@ import { Vue, Watch, Component, Prop } from "vue-property-decorator";
 @Component
 export default class S2SNavigationMenus extends Vue {
 	@Prop() config!: any;
+	@Prop() dense!: boolean;
+
+	private selectedItem: any = {};
 }
 </script>
-
-<!-- Add "scoped" attribute to limit CSS to this component only -->
-
 <style scoped>
->>> .v-list__group__header .v-list__tile {
-	padding-left: 0px !important;
-}
-
->>> .v-list__tile__action {
-	min-width: 40px;
+.v-list--nav .v-list-item:not(:last-child):not(:only-child) {
+	margin-bottom: 0;
 }
 </style>

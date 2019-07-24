@@ -1,6 +1,6 @@
 <template>
 	<v-layout row wrap v-bind="layout.properties" v-if="valid">
-		<v-flex xs12 md6 v-for="(field, index) in formFields" :key="index" v-show="!field.hidden" v-bind="field.containerProperties">
+		<v-flex v-for="(field, index) in formFields" :key="index" v-show="!field.hidden" v-bind="applyProperties(field)" px-2>
 			<v-text-field
 				v-if="field.component === 'v-text-field'"
 				:label="field.label"
@@ -45,33 +45,18 @@
 				v-model="menu[field.name]"
 				:close-on-content-click="false"
 				:nudge-right="40"
-				lazy
 				transition="scale-transition"
 				offset-y
 				full-width
 				min-width="290px"
 			>
-				<v-text-field
-					slot="activator"
-					:value="getValue(field.name)"
-					:label="field.label"
-					prepend-icon="event"
-					readonly
-					:data-vv-name="field.name"
-					v-validate="field.validation"
-					:error-messages="errors.collect(field.name)"
-				></v-text-field>
-				<v-date-picker :value="getValue(field.name)" @change="onInput($event, field.name)" no-title scrollable></v-date-picker>
+				<template v-slot:activator="{ on }">
+					<v-text-field v-on="on" :value="getValue(field.name)" :label="field.label" prepend-icon="event" readonly></v-text-field>
+				</template>
+				<v-date-picker :value="getValue(field.name)" @input="onInput($event, field.name)" no-title scrollable></v-date-picker>
 			</v-menu>
 			<label v-else-if="field.component === 'v-label'">{{ field.label }}</label>
 			<slot v-else-if="field.component === 'v-slot'" :name="field.slotName" :model="model"></slot>
-			<S2SFileUploader
-				v-else-if="field.component === 'v-file-uploader'"
-				v-bind="field.properties"
-				@change="onInput($event, field.name)"
-				:value="getValue(field.name)"
-				:api="apiLookup(field.api)"
-			></S2SFileUploader>
 		</v-flex>
 	</v-layout>
 </template>
@@ -87,9 +72,6 @@ import VeeValidate from "vee-validate";
 Vue.use(VeeValidate);
 
 @Component({
-	components: {
-		S2SFileUploader: () => import(/* webpackChunkName: "s2s-file-uploader" */ "@/components/S2SFileUploader.vue")
-	},
 	$_veeValidate: {
 		validator: "new"
 	}
@@ -114,6 +96,9 @@ export default class S2SFormGenerator extends Vue {
 	private formGeneratorSchema = formGeneratorSchema;
 	private schemaForm!: Form;
 
+	// Default Break Points
+	private defaultBreakPoints = { md6: true, xs12: true };
+
 	mounted() {
 		const ajv = new Ajv();
 		const validate = ajv.compile(this.formGeneratorSchema);
@@ -125,6 +110,7 @@ export default class S2SFormGenerator extends Vue {
 
 		this.schemaForm = this.schema;
 		this.formFields = Object.freeze(this.schemaForm.fields);
+
 		this.layout = this.schemaForm.layout;
 		this.fetchLookups();
 		this.buildDefaultValues();
@@ -243,6 +229,15 @@ export default class S2SFormGenerator extends Vue {
 			attributes
 		};
 		return dictionary;
+	}
+
+	// Apply component container properties
+	private applyProperties(field: ComponentBase) {
+		let properties = field.containerProperties;
+		if (!field.breakpoints) properties = { ...properties, ...this.defaultBreakPoints };
+		else properties = { ...properties, ...field.breakpoints };
+
+		return properties;
 	}
 
 	/**

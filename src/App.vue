@@ -1,34 +1,38 @@
 <template>
 	<v-app>
-		<v-toolbar ref app>
+		<v-navigation-drawer class="secondary" dark fixed :clipped="$vuetify.breakpoint.mdAndUp" app v-model="drawer">
+			<S2SNavigationMenus :config="drawerMenusExample"></S2SNavigationMenus>
+		</v-navigation-drawer>
+		<v-app-bar clipped-left app>
 			<v-toolbar-title>Yes Please</v-toolbar-title>
 			<v-spacer></v-spacer>
 			<slot name="toolbar-content"></slot>
-		</v-toolbar>
+		</v-app-bar>
 		<v-content>
-			<S2SForm dark title="test Title" color="primary" fill-height>
-				<S2SCard>
-					<S2SFormGenerator
-						ref="form"
-						:schema="formExample"
-						:apiLookup="apiFetchMock"
-						:data="{ flag: true, profile: { name: 'Name' }, parent: { flag: true } }"
-					>
-						<template v-slot:test="{ model }">
-							<v-flex xs12>
-								<v-select
-									:items="[{ name: 'wood', id: 1 }, { name: 'steel', id: 2 }, { name: 'glass', id: 3 }]"
-									v-model="model.test"
-									item-value="id"
-									item-text="name"
-									multiple
-									label="Materials"
-								></v-select>
-							</v-flex>
-						</template>
-					</S2SFormGenerator>
-					<v-btn color="error" @click="validate()">Validate</v-btn>
-				</S2SCard>
+			<S2SForm dark title="test Title" color="black white--text" fill-height>
+				<template #no-padding>
+					<v-card height="20" class="red"></v-card>
+				</template>
+				<S2SFormGenerator
+					ref="form"
+					:schema="formExample"
+					:apiLookup="apiFetchMock"
+					:data="{ flag: true, profile: { name: 'Name' }, parent: { child: { dob: '2019-05-21' }, flag: true } }"
+				>
+					<template v-slot:test="{ model }">
+						<v-flex xs12>
+							<v-select
+								:items="[{ name: 'wood', id: 1 }, { name: 'steel', id: 2 }, { name: 'glass', id: 3 }]"
+								v-model="model.test"
+								item-value="id"
+								item-text="name"
+								multiple
+								label="Materials"
+							></v-select>
+						</v-flex>
+					</template>
+				</S2SFormGenerator>
+				<v-btn color="error" @click="validate()">Validate</v-btn>
 				<br />
 				<S2SCard>
 					<v-flex xs12>--- File Uploader ---</v-flex>
@@ -44,8 +48,10 @@ import S2SForm from "./components/S2SForm.vue";
 import S2SCard from "./components/S2SCard.vue";
 import S2SFileUploader from "./components/S2SFileUploader.vue";
 import S2SCurrencyInput from "./components/S2SCurrencyInput.vue";
+import S2SNavigationMenus from "./components/S2SNavigationMenus.vue";
 import S2SFormGenerator from "./components/formGenerator/S2SFormGenerator.vue";
 import formExample from "../demo/form-example.json";
+import drawerMenusExample from "../demo/drawer-menus-example";
 
 export default {
 	name: "App",
@@ -53,12 +59,14 @@ export default {
 		S2SCard,
 		S2SForm,
 		S2SFormGenerator,
-		S2SFileUploader
+		S2SFileUploader,
+		S2SNavigationMenus
 	},
 	data() {
 		return {
 			result: 0,
-			formExample: formExample
+			formExample: formExample,
+			drawerMenusExample: drawerMenusExample
 		};
 	},
 	methods: {

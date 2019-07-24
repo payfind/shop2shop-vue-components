@@ -4,9 +4,7 @@
 		"htmlClass": "xs12 sm6"
 	},
 	"layout": {
-		"properties": {
-			"d-block": true
-		}
+		"properties": {}
 	},
 	"fields": [
 		{
