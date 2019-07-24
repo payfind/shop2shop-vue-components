@@ -27,6 +27,7 @@
 				:input-value="getValue(field.name)"
 				@change="onInput($event, field.name)"
 				:label="field.label"
+				v-bind="field.properties"
 			></v-checkbox>
 			<v-autocomplete
 				v-else-if="field.component === 'v-autocomplete'"
