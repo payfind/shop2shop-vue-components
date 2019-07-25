@@ -1,5 +1,5 @@
 <template>
-	<v-layout row wrap v-bind="layout.properties" v-if="valid">
+	<v-layout wrap v-bind="layout.properties" v-if="valid">
 		<v-flex v-for="(field, index) in formFields" :key="index" v-show="!field.hidden" v-bind="applyProperties(field)" px-2>
 			<v-text-field
 				v-if="field.component === 'v-text-field'"
@@ -79,6 +79,7 @@ Vue.use(VeeValidate);
 })
 export default class S2SFormGenerator extends Vue {
 	@Prop() title!: string;
+	// apiLookup would typically be a case statement returning a promise from axios
 	@Prop() apiLookup!: (url: string) => Promise<any>;
 	@Prop() schema!: any;
 	@Prop() data!: any;
@@ -131,6 +132,10 @@ export default class S2SFormGenerator extends Vue {
 		this.setValue(fieldName, value);
 	}
 
+	/**
+	 * This will fetch any lookups for v-select or v-autocomplete when form is created.
+	 * apiLookup function is required!
+	 */
 	private async fetchLookups() {
 		for (let field of this.formFields) {
 			if (field.component !== "v-slot" && (field.component === "v-select" || field.component === "v-autocomplete")) {
@@ -177,6 +182,7 @@ export default class S2SFormGenerator extends Vue {
 	}
 
 	private buildObjectFromString(keyString: string, defaultVal: any) {
+		debugger;
 		let str = keyString,
 			arr = str.split("."),
 			obj,
@@ -187,37 +193,29 @@ export default class S2SFormGenerator extends Vue {
 			else o = o[arr[i]] = {};
 		}
 
+		// We doing deep merge because a nested object can contain multiple values belonging to multiple components
 		this.model = this.mergeDeep(this.model, obj);
 	}
 
 	private buildDefaultValues() {
 		for (let field of this.formFields) {
+			debugger;
 			// We always want checkboxes to be defaulted to false!
 			if (field.component === "v-checkbox" && !this.getValue(field.name)) this.buildObjectFromString(field.name, false);
 			else if (field.component !== "v-slot" && !this.getValue(field.name)) this.buildObjectFromString(field.name, field.defaultVal);
 			else if (field.component === "v-slot" && !this.getValue(field.slotName)) this.buildObjectFromString(field.slotName, field.defaultVal || {});
 		}
+		debugger;
 	}
 
 	public validate() {
 		return this.$validator.validateAll();
 	}
 
-	private getLookups(index: number, api: string | string[]) {
-		let response!: any;
-		if (typeof api === "string" && this.apiLookup) {
-			this.apiLookup(api).then(response => {
-				const data = response.data.results ? response.data.results : response.data;
-				this.lookups[index] = data;
-			});
-			this.lookups[index] = [];
-
-			return this.lookups[index];
-		} else {
-			return api;
-		}
-	}
-
+	/**
+	 * This just builds a validation dictionary that is require be vee-validate to
+	 * throw error message relevant to the validated component
+	 */
 	private buildValidationDictionary() {
 		const attributes: { [name: string]: string } = {};
 		for (let i = 0; i < this.formFields.length; i++) {
