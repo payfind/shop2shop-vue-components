@@ -182,7 +182,6 @@ export default class S2SFormGenerator extends Vue {
 	}
 
 	private buildObjectFromString(keyString: string, defaultVal: any) {
-		debugger;
 		let str = keyString,
 			arr = str.split("."),
 			obj,
@@ -199,13 +198,11 @@ export default class S2SFormGenerator extends Vue {
 
 	private buildDefaultValues() {
 		for (let field of this.formFields) {
-			debugger;
 			// We always want checkboxes to be defaulted to false!
 			if (field.component === "v-checkbox" && !this.getValue(field.name)) this.buildObjectFromString(field.name, false);
 			else if (field.component !== "v-slot" && !this.getValue(field.name)) this.buildObjectFromString(field.name, field.defaultVal);
 			else if (field.component === "v-slot" && !this.getValue(field.slotName)) this.buildObjectFromString(field.slotName, field.defaultVal || {});
 		}
-		debugger;
 	}
 
 	public validate() {
