@@ -31,7 +31,8 @@
 		"vue-template-compiler": "^2.6.6",
 		"vuetify": "^2.0.0",
 		"vue-cli-plugin-vuetify": "^0.6.1",
-		"vuetify-loader": "^1.2.2"
+		"vuetify-loader": "^1.2.2",
+		"typescript-json-schema": "^0.39.0"
 	},
 	"files": [
 		"dist/*",

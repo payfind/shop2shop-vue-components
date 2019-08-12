@@ -82,9 +82,7 @@
 			"label": "Transport",
 			"name": "fileUploader",
 			"component": "v-file-uploader",
-			"properties": { "uploadButtonText": "Upload Button", "item-value": "id" },
-			"api": "transportApi",
-			"defaultVal": []
+			"properties": { "uploadButtonText": "Upload Button", "item-value": "id" }
 		}
 	]
 }

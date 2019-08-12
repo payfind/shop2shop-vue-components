@@ -59,7 +59,6 @@ interface VSLot {
 
 interface VFileUploader extends ComponentBase {
 	component: "v-file-uploader";
-	api: string;
 }
 
 export interface Form {

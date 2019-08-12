@@ -11,6 +11,16 @@
 				:value="getValue(field.name)"
 				@input="onInput($event, field.name)"
 			></v-text-field>
+			<v-file-input
+				v-else-if="field.component === 'v-file-uploader'"
+				:label="field.label"
+				v-bind="field.properties"
+				v-validate="field.validation"
+				:data-vv-name="field.name"
+				:error-messages="errors.collect(field.name)"
+				:value="getValue(field.name)"
+				@change="onInput($event, field.name)"
+			></v-file-input>
 			<v-select
 				v-else-if="field.component === 'v-select'"
 				:label="field.label"
