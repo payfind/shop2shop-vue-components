@@ -152,10 +152,10 @@ export default class S2SFormGenerator extends Vue {
 				if (typeof field.items === "string") {
 					const response = await this.apiLookup(field.items);
 					if (!response.data) {
-						Vue.set(this.lookups, field.name, response);
+						Vue.set(this.lookups, field.name, response.sort());
 					} else {
 						const data = response.data.results ? response.data.results : response.data;
-						Vue.set(this.lookups, field.name, data);
+						Vue.set(this.lookups, field.name, data.sort());
 					}
 				} else {
 					Vue.set(this.lookups, field.name, field.items);
