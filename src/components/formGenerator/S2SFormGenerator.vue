@@ -152,10 +152,10 @@ export default class S2SFormGenerator extends Vue {
 				if (typeof field.items === "string") {
 					const response = await this.apiLookup(field.items);
 					if (!response.data) {
-						Vue.set(this.lookups, field.name, response);
+						Vue.set(this.lookups, field.name, response.sort());
 					} else {
 						const data = response.data.results ? response.data.results : response.data;
-						Vue.set(this.lookups, field.name, data);
+						Vue.set(this.lookups, field.name, data.sort());
 					}
 				} else {
 					Vue.set(this.lookups, field.name, field.items);
@@ -208,6 +208,7 @@ export default class S2SFormGenerator extends Vue {
 
 	private buildDefaultValues() {
 		for (let field of this.formFields) {
+			// console.warn("buildDefaultValues", field);
 			// We always want checkboxes to be defaulted to false!
 			if (field.component === "v-checkbox" && !this.getValue(field.name)) this.buildObjectFromString(field.name, false);
 			else if (field.component !== "v-slot" && !this.getValue(field.name)) this.buildObjectFromString(field.name, field.defaultVal);
@@ -239,6 +240,7 @@ export default class S2SFormGenerator extends Vue {
 
 	// Apply component container properties
 	private applyProperties(field: ComponentBase) {
+		// console.warn("properties", field);
 		let properties = field.containerProperties;
 		if (!field.breakpoints) properties = { ...properties, ...this.defaultBreakPoints };
 		else properties = { ...properties, ...field.breakpoints };
