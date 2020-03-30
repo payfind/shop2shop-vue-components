@@ -1,5 +1,5 @@
-type ComponentName = "v-file-uploader" | "v-text-field" | "v-select" | "v-checkbox" | "v-autocomplete" | "v-label" | "v-date-picker" | "v-slot";
-export type ComponentType = VFileUploader | VTextField | VSelect | VCheckbox | VAutocomplete | VLabel | VDataPicker | VSLot;
+type ComponentName = "v-file-uploader" | "v-text-field" | "v-textarea" | "v-select" | "v-checkbox" | "v-autocomplete" | "v-label" | "v-date-picker" | "v-slot";
+export type ComponentType = VFileUploader | VTextField | VTextArea | VSelect | VCheckbox | VAutocomplete | VLabel | VDataPicker | VSLot;
 
 export interface Layout {
 	properties: {
@@ -27,6 +27,10 @@ export interface ComponentBase {
 
 interface VTextField extends ComponentBase {
 	component: "v-text-field";
+}
+
+interface VTextArea extends ComponentBase {
+	component: "v-textarea";
 }
 
 interface VSelect extends ComponentBase {

@@ -24,6 +24,12 @@
 			"validation": "required"
 		},
 		{
+			"label": "Long Description",
+			"name": "longDescription",
+			"component": "v-textarea",
+			"rows": 3
+		},
+		{
 			"label": "Select Organisation",
 			"name": "organisationid",
 			"component": "v-autocomplete",
