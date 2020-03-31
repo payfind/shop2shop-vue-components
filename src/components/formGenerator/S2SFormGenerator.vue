@@ -11,6 +11,18 @@
 				:value="getValue(field.name)"
 				@input="onInput($event, field.name)"
 			></v-text-field>
+			<v-textarea
+				v-if="field.component === 'v-textarea'"
+				:label="field.label"
+				v-bind="field.properties"
+				v-validate="field.validation"
+				:data-vv-name="field.name"
+				:error-messages="errors.collect(field.name)"
+				:value="getValue(field.name)"
+				@input="onInput($event, field.name)"
+				:auto-grow="field.autogrow"
+				:rows="field.rows"
+			></v-textarea>
 			<v-file-input
 				v-else-if="field.component === 'v-file-uploader'"
 				:label="field.label"

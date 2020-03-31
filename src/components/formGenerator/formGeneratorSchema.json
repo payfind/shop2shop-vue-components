@@ -1,403 +1,365 @@
 {
-    "$schema": "http://json-schema.org/draft-07/schema#",
-    "definitions": {
-        "ComponentProperties": {
-            "properties": {
-                "item-text": {
-                    "type": "string"
-                },
-                "item-value": {
-                    "type": "string"
-                }
-            },
-            "type": "object"
-        },
-        "Layout": {
-            "properties": {
-                "properties": {
-                    "properties": {
-                        "d-block": {
-                            "type": "boolean"
-                        }
-                    },
-                    "type": "object"
-                }
-            },
-            "required": [
-                "properties"
-            ],
-            "type": "object"
-        },
-        "VAutocomplete": {
-            "properties": {
-                "breakpoints": {
-                    "properties": {
-                    },
-                    "type": "object"
-                },
-                "component": {
-                    "enum": [
-                        "v-autocomplete"
-                    ],
-                    "type": "string"
-                },
-                "containerProperties": {
-                },
-                "defaultVal": {
-                },
-                "hidden": {
-                    "type": "boolean"
-                },
-                "items": {
-                    "anyOf": [
-                        {
-                            "items": {
-                                "type": "string"
-                            },
-                            "type": "array"
-                        },
-                        {
-                            "type": "string"
-                        }
-                    ]
-                },
-                "label": {
-                    "type": "string"
-                },
-                "name": {
-                    "type": "string"
-                },
-                "properties": {
-                    "$ref": "#/definitions/ComponentProperties"
-                },
-                "validation": {
-                    "type": "string"
-                }
-            },
-            "required": [
-                "component",
-                "items",
-                "label",
-                "name"
-            ],
-            "type": "object"
-        },
-        "VCheckbox": {
-            "properties": {
-                "breakpoints": {
-                    "properties": {
-                    },
-                    "type": "object"
-                },
-                "component": {
-                    "enum": [
-                        "v-checkbox"
-                    ],
-                    "type": "string"
-                },
-                "containerProperties": {
-                },
-                "defaultVal": {
-                },
-                "hidden": {
-                    "type": "boolean"
-                },
-                "label": {
-                    "type": "string"
-                },
-                "name": {
-                    "type": "string"
-                },
-                "properties": {
-                    "$ref": "#/definitions/ComponentProperties"
-                },
-                "validation": {
-                    "type": "string"
-                }
-            },
-            "required": [
-                "component",
-                "label",
-                "name"
-            ],
-            "type": "object"
-        },
-        "VDataPicker": {
-            "properties": {
-                "breakpoints": {
-                    "properties": {
-                    },
-                    "type": "object"
-                },
-                "component": {
-                    "enum": [
-                        "v-date-picker"
-                    ],
-                    "type": "string"
-                },
-                "containerProperties": {
-                },
-                "defaultVal": {
-                },
-                "hidden": {
-                    "type": "boolean"
-                },
-                "label": {
-                    "type": "string"
-                },
-                "name": {
-                    "type": "string"
-                },
-                "properties": {
-                    "$ref": "#/definitions/ComponentProperties"
-                },
-                "validation": {
-                    "type": "string"
-                }
-            },
-            "required": [
-                "component",
-                "label",
-                "name"
-            ],
-            "type": "object"
-        },
-        "VFileUploader": {
-            "properties": {
-                "breakpoints": {
-                    "properties": {
-                    },
-                    "type": "object"
-                },
-                "component": {
-                    "enum": [
-                        "v-file-uploader"
-                    ],
-                    "type": "string"
-                },
-                "containerProperties": {
-                },
-                "defaultVal": {
-                },
-                "hidden": {
-                    "type": "boolean"
-                },
-                "label": {
-                    "type": "string"
-                },
-                "name": {
-                    "type": "string"
-                },
-                "properties": {
-                    "$ref": "#/definitions/ComponentProperties"
-                },
-                "validation": {
-                    "type": "string"
-                }
-            },
-            "required": [
-                "component",
-                "label",
-                "name"
-            ],
-            "type": "object"
-        },
-        "VLabel": {
-            "properties": {
-                "breakpoints": {
-                    "properties": {
-                    },
-                    "type": "object"
-                },
-                "component": {
-                    "enum": [
-                        "v-label"
-                    ],
-                    "type": "string"
-                },
-                "containerProperties": {
-                },
-                "defaultVal": {
-                },
-                "hidden": {
-                    "type": "boolean"
-                },
-                "label": {
-                    "type": "string"
-                },
-                "name": {
-                    "type": "string"
-                },
-                "properties": {
-                    "$ref": "#/definitions/ComponentProperties"
-                },
-                "validation": {
-                    "type": "string"
-                }
-            },
-            "required": [
-                "component",
-                "label",
-                "name"
-            ],
-            "type": "object"
-        },
-        "VSLot": {
-            "properties": {
-                "component": {
-                    "enum": [
-                        "v-slot"
-                    ],
-                    "type": "string"
-                },
-                "defaultVal": {
-                },
-                "slotName": {
-                    "type": "string"
-                }
-            },
-            "required": [
-                "component",
-                "defaultVal",
-                "slotName"
-            ],
-            "type": "object"
-        },
-        "VSelect": {
-            "properties": {
-                "breakpoints": {
-                    "properties": {
-                    },
-                    "type": "object"
-                },
-                "component": {
-                    "enum": [
-                        "v-select"
-                    ],
-                    "type": "string"
-                },
-                "containerProperties": {
-                },
-                "defaultVal": {
-                },
-                "hidden": {
-                    "type": "boolean"
-                },
-                "items": {
-                    "anyOf": [
-                        {
-                            "items": {
-                                "type": "string"
-                            },
-                            "type": "array"
-                        },
-                        {
-                            "type": "string"
-                        }
-                    ]
-                },
-                "label": {
-                    "type": "string"
-                },
-                "name": {
-                    "type": "string"
-                },
-                "properties": {
-                    "$ref": "#/definitions/ComponentProperties"
-                },
-                "validation": {
-                    "type": "string"
-                }
-            },
-            "required": [
-                "component",
-                "items",
-                "label",
-                "name"
-            ],
-            "type": "object"
-        },
-        "VTextField": {
-            "properties": {
-                "breakpoints": {
-                    "properties": {
-                    },
-                    "type": "object"
-                },
-                "component": {
-                    "enum": [
-                        "v-text-field"
-                    ],
-                    "type": "string"
-                },
-                "containerProperties": {
-                },
-                "defaultVal": {
-                },
-                "hidden": {
-                    "type": "boolean"
-                },
-                "label": {
-                    "type": "string"
-                },
-                "name": {
-                    "type": "string"
-                },
-                "properties": {
-                    "$ref": "#/definitions/ComponentProperties"
-                },
-                "validation": {
-                    "type": "string"
-                }
-            },
-            "required": [
-                "component",
-                "label",
-                "name"
-            ],
-            "type": "object"
-        }
-    },
-    "properties": {
-        "fields": {
-            "items": {
-                "anyOf": [
-                    {
-                        "$ref": "#/definitions/VFileUploader"
-                    },
-                    {
-                        "$ref": "#/definitions/VTextField"
-                    },
-                    {
-                        "$ref": "#/definitions/VSelect"
-                    },
-                    {
-                        "$ref": "#/definitions/VCheckbox"
-                    },
-                    {
-                        "$ref": "#/definitions/VAutocomplete"
-                    },
-                    {
-                        "$ref": "#/definitions/VLabel"
-                    },
-                    {
-                        "$ref": "#/definitions/VDataPicker"
-                    },
-                    {
-                        "$ref": "#/definitions/VSLot"
-                    }
-                ]
-            },
-            "type": "array"
-        },
-        "layout": {
-            "$ref": "#/definitions/Layout"
-        }
-    },
-    "required": [
-        "fields",
-        "layout"
-    ],
-    "type": "object"
+	"$schema": "http://json-schema.org/draft-07/schema#",
+	"definitions": {
+		"ComponentProperties": {
+			"properties": {
+				"item-text": {
+					"type": "string"
+				},
+				"item-value": {
+					"type": "string"
+				}
+			},
+			"type": "object"
+		},
+		"Layout": {
+			"properties": {
+				"properties": {
+					"properties": {
+						"d-block": {
+							"type": "boolean"
+						}
+					},
+					"type": "object"
+				}
+			},
+			"required": ["properties"],
+			"type": "object"
+		},
+		"VAutocomplete": {
+			"properties": {
+				"breakpoints": {
+					"properties": {},
+					"type": "object"
+				},
+				"component": {
+					"enum": ["v-autocomplete"],
+					"type": "string"
+				},
+				"containerProperties": {},
+				"defaultVal": {},
+				"hidden": {
+					"type": "boolean"
+				},
+				"items": {
+					"anyOf": [
+						{
+							"items": {
+								"type": "string"
+							},
+							"type": "array"
+						},
+						{
+							"type": "string"
+						}
+					]
+				},
+				"label": {
+					"type": "string"
+				},
+				"name": {
+					"type": "string"
+				},
+				"properties": {
+					"$ref": "#/definitions/ComponentProperties"
+				},
+				"validation": {
+					"type": "string"
+				}
+			},
+			"required": ["component", "items", "label", "name"],
+			"type": "object"
+		},
+		"VCheckbox": {
+			"properties": {
+				"breakpoints": {
+					"properties": {},
+					"type": "object"
+				},
+				"component": {
+					"enum": ["v-checkbox"],
+					"type": "string"
+				},
+				"containerProperties": {},
+				"defaultVal": {},
+				"hidden": {
+					"type": "boolean"
+				},
+				"label": {
+					"type": "string"
+				},
+				"name": {
+					"type": "string"
+				},
+				"properties": {
+					"$ref": "#/definitions/ComponentProperties"
+				},
+				"validation": {
+					"type": "string"
+				}
+			},
+			"required": ["component", "label", "name"],
+			"type": "object"
+		},
+		"VDataPicker": {
+			"properties": {
+				"breakpoints": {
+					"properties": {},
+					"type": "object"
+				},
+				"component": {
+					"enum": ["v-date-picker"],
+					"type": "string"
+				},
+				"containerProperties": {},
+				"defaultVal": {},
+				"hidden": {
+					"type": "boolean"
+				},
+				"label": {
+					"type": "string"
+				},
+				"name": {
+					"type": "string"
+				},
+				"properties": {
+					"$ref": "#/definitions/ComponentProperties"
+				},
+				"validation": {
+					"type": "string"
+				}
+			},
+			"required": ["component", "label", "name"],
+			"type": "object"
+		},
+		"VFileUploader": {
+			"properties": {
+				"breakpoints": {
+					"properties": {},
+					"type": "object"
+				},
+				"component": {
+					"enum": ["v-file-uploader"],
+					"type": "string"
+				},
+				"containerProperties": {},
+				"defaultVal": {},
+				"hidden": {
+					"type": "boolean"
+				},
+				"label": {
+					"type": "string"
+				},
+				"name": {
+					"type": "string"
+				},
+				"properties": {
+					"$ref": "#/definitions/ComponentProperties"
+				},
+				"validation": {
+					"type": "string"
+				}
+			},
+			"required": ["component", "label", "name"],
+			"type": "object"
+		},
+		"VLabel": {
+			"properties": {
+				"breakpoints": {
+					"properties": {},
+					"type": "object"
+				},
+				"component": {
+					"enum": ["v-label"],
+					"type": "string"
+				},
+				"containerProperties": {},
+				"defaultVal": {},
+				"hidden": {
+					"type": "boolean"
+				},
+				"label": {
+					"type": "string"
+				},
+				"name": {
+					"type": "string"
+				},
+				"properties": {
+					"$ref": "#/definitions/ComponentProperties"
+				},
+				"validation": {
+					"type": "string"
+				}
+			},
+			"required": ["component", "label", "name"],
+			"type": "object"
+		},
+		"VSLot": {
+			"properties": {
+				"component": {
+					"enum": ["v-slot"],
+					"type": "string"
+				},
+				"defaultVal": {},
+				"slotName": {
+					"type": "string"
+				}
+			},
+			"required": ["component", "defaultVal", "slotName"],
+			"type": "object"
+		},
+		"VSelect": {
+			"properties": {
+				"breakpoints": {
+					"properties": {},
+					"type": "object"
+				},
+				"component": {
+					"enum": ["v-select"],
+					"type": "string"
+				},
+				"containerProperties": {},
+				"defaultVal": {},
+				"hidden": {
+					"type": "boolean"
+				},
+				"items": {
+					"anyOf": [
+						{
+							"items": {
+								"type": "string"
+							},
+							"type": "array"
+						},
+						{
+							"type": "string"
+						}
+					]
+				},
+				"label": {
+					"type": "string"
+				},
+				"name": {
+					"type": "string"
+				},
+				"properties": {
+					"$ref": "#/definitions/ComponentProperties"
+				},
+				"validation": {
+					"type": "string"
+				}
+			},
+			"required": ["component", "items", "label", "name"],
+			"type": "object"
+		},
+		"VTextField": {
+			"properties": {
+				"breakpoints": {
+					"properties": {},
+					"type": "object"
+				},
+				"component": {
+					"enum": ["v-text-field"],
+					"type": "string"
+				},
+				"containerProperties": {},
+				"defaultVal": {},
+				"hidden": {
+					"type": "boolean"
+				},
+				"label": {
+					"type": "string"
+				},
+				"name": {
+					"type": "string"
+				},
+				"properties": {
+					"$ref": "#/definitions/ComponentProperties"
+				},
+				"validation": {
+					"type": "string"
+				}
+			},
+			"required": ["component", "label", "name"],
+			"type": "object"
+		},
+		"VTextArea": {
+			"properties": {
+				"breakpoints": {
+					"properties": {},
+					"type": "object"
+				},
+				"component": {
+					"enum": ["v-textarea"],
+					"type": "string"
+				},
+				"containerProperties": {},
+				"defaultVal": {},
+				"hidden": {
+					"type": "boolean"
+				},
+				"label": {
+					"type": "string"
+				},
+				"name": {
+					"type": "string"
+				},
+				"autogrow": {
+					"type": "boolean"
+				},
+				"rows": {
+					"type": "number"
+				},
+				"properties": {
+					"$ref": "#/definitions/ComponentProperties"
+				},
+				"validation": {
+					"type": "string"
+				}
+			},
+			"required": ["component", "label", "name"],
+			"type": "object"
+		}
+	},
+	"properties": {
+		"fields": {
+			"items": {
+				"anyOf": [
+					{
+						"$ref": "#/definitions/VFileUploader"
+					},
+					{
+						"$ref": "#/definitions/VTextField"
+					},
+					{
+						"$ref": "#/definitions/VTextArea"
+					},
+					{
+						"$ref": "#/definitions/VSelect"
+					},
+					{
+						"$ref": "#/definitions/VCheckbox"
+					},
+					{
+						"$ref": "#/definitions/VAutocomplete"
+					},
+					{
+						"$ref": "#/definitions/VLabel"
+					},
+					{
+						"$ref": "#/definitions/VDataPicker"
+					},
+					{
+						"$ref": "#/definitions/VSLot"
+					}
+				]
+			},
+			"type": "array"
+		},
+		"layout": {
+			"$ref": "#/definitions/Layout"
+		}
+	},
+	"required": ["fields", "layout"],
+	"type": "object"
 }
-
