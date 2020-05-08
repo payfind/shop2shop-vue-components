@@ -22,7 +22,11 @@
 					<template v-slot:test="{ model }">
 						<v-flex xs12>
 							<v-select
-								:items="[{ name: 'wood', id: 1 }, { name: 'steel', id: 2 }, { name: 'glass', id: 3 }]"
+								:items="[
+									{ name: 'wood', id: 1 },
+									{ name: 'steel', id: 2 },
+									{ name: 'glass', id: 3 }
+								]"
 								v-model="model.test"
 								item-value="id"
 								item-text="name"
